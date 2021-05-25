@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>1&period; Introduction</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body">
+        <h1 id="1-introduction">1. Introduction</h1>
+<p>Goal of Project:</p>
+<p>Learn as much as possible about basic python</p>
+<p>TABLE OF CONTENTS</p>
+<ol>
+<li><a href="#1-introduction">1. Introduction</a></li>
+<li><a href="#2-examples">2. Examples</a>
+<ol>
+<li><a href="#21-basic-information">2.1. Basic Information</a>
+<ol>
+<li><a href="#211-building-and-compiling">2.1.1. Building and Compiling</a>
+<ol>
+<li><a href="#2111-command-line-python-interpreter">2.1.1.1. Command Line Python Interpreter</a></li>
+<li><a href="#2112-py-files">2.1.1.2. .py Files</a></li>
+<li><a href="#2113-advanced-interpreter">2.1.1.3. Advanced Interpreter</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#22-variables">2.2. Variables</a></li>
+<li><a href="#23-math">2.3. Math</a></li>
+</ol>
+</li>
+</ol>
+<h1 id="2-examples">2. Examples</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Need to show</th>
+<th style="text-align:left">How to show</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Compiling and Debugging</td>
+<td style="text-align:left">Console</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">.Py File</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">Jupyter Labs</td>
+</tr>
+<tr>
+<td style="text-align:right">Basic programing Structures</td>
+<td style="text-align:left">Variables</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">Operations</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">Whitespace</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">imports</td>
+</tr>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">Scope</td>
+</tr>
+<tr>
+<td style="text-align:right">Data structures</td>
+<td style="text-align:left">Arrays</td>
+</tr>
+<tr>
+<td style="text-align:right">Functions</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:right">Input</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:right">Output</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="21-basic-information">2.1. Basic Information</h2>
+<p>This solution simply presents the basic information of python AND will not have any asociated code.</p>
+<h3 id="211-building-and-compiling">2.1.1. Building and Compiling</h3>
+<p>Runing python is different to other languages because you can run python through multiple means.</p>
+<h4 id="2111-command-line-python-interpreter">2.1.1.1. Command Line Python Interpreter</h4>
+<p>Python can be run in the command line. To get started type <strong>py</strong> into the command line.</p>
+<p>You will then see the following text in your command line, informing you have just launched the command line python interpreter.</p>
+<blockquote>
+<p>Python 3.8.8 (default, Apr 13 2021, 15:08:03) [MSC v.1916 64 bit (AMD64)] :: Anaconda, Inc. on win32</p>
+</blockquote>
+<blockquote>
+<p>Warning:
+This Python interpreter is in a conda environment, but the environment has
+not been activated. Libraries may fail to load. To activate this environment
+please see <a href="https://conda.io/activation">https://conda.io/activation</a></p>
+</blockquote>
+<blockquote>
+<p>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</p>
+</blockquote>
+<p>If you did not see this text it is advised that you check your instalation of python.</p>
+<p>Here you can type any line of code such as</p>
+<pre><code class="language-python"><div>&gt;&gt;&gt;print(<span class="hljs-string">&quot;Hello World&quot;</span>)
+Hello World
+</div></code></pre>
+<h4 id="2112-py-files">2.1.1.2. .py Files</h4>
+<p>Another way to work with python is to write the code into a text file with the extension .py. Any .py file can be quickly read.</p>
+<p>One example is the code below</p>
+<pre><code class="language-python"><div>x = <span class="hljs-number">0</span>
+x += <span class="hljs-number">1</span>
+x *= <span class="hljs-number">5</span>
+print(<span class="hljs-string">&quot;High&quot;</span>, <span class="hljs-number">5</span>)
+
+</div></code></pre>
+<p>This will output</p>
+<pre><code><code><div>High 5
+</div></code></code></pre>
+<p>There are two ways to run these files,</p>
+<ol>
+<li>Open the File in an IDE such as Juyyter Lab IDE or Visual Studio Code
+<ol>
+<li>Right Click the file and select OPEN WITH</li>
+<li>Select the IDE of your choice</li>
+<li>These IDE's will allow you to run the file. In VSCode you will need to install the proper extension to run python files.</li>
+</ol>
+</li>
+<li>Run the files via command line.
+<ol>
+<li>Loacte the file in command line (you can use cd &lt; folder name &gt; if it is not in your root direcotry)</li>
+<li>Type python &lt; file name &gt;</li>
+<li>A python interpreter will launch showing your output</li>
+</ol>
+</li>
+</ol>
+<p><img src="file:///c:\Users\night\repo\school\EGR491-PYMLDS\examples\cmdlin-prepy.png" alt="COMAND LINE OUTPUT"></p>
+<h4 id="2113-advanced-interpreter">2.1.1.3. Advanced Interpreter</h4>
+<p>There are other interpreters and IDE's for python. The best of these come in the conda package which includes the Spyder IDE and Jupyter Labs interpreter.</p>
+<p>The difference between an IDE and Interpreter when it comes to python is that the IDE is more tradional. You write your code then you run it. In an interpreter you can write and run your code line by line or in short segments. Below is an example image from the Juypter Labs extension for Visual Studio Code.</p>
+<p><img src="file:///c:\Users\night\repo\school\EGR491-PYMLDS\examples\juppy.ex.png" alt="JUPYTER LAB EXAMPLE"></p>
+<h2 id="22-variables">2.2. Variables</h2>
+<h2 id="23-math">2.3. Math</h2>
+<p>In this solution we will show the basic mathmatical operations of python. This include the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Operation</th>
+<th style="text-align:left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">+</td>
+<td style="text-align:left">Addition</td>
+<td>Adds the two operators</td>
+</tr>
+<tr>
+<td style="text-align:right">-</td>
+<td style="text-align:left">Subtraction</td>
+<td>Subtracts the first operator from the second</td>
+</tr>
+<tr>
+<td style="text-align:right">*</td>
+<td style="text-align:left">Multiplication</td>
+<td>Multiplies the two operators</td>
+</tr>
+<tr>
+<td style="text-align:right">**</td>
+<td style="text-align:left">Power</td>
+<td>Raser the first operator to the second</td>
+</tr>
+<tr>
+<td style="text-align:right">/</td>
+<td style="text-align:left">Nomal Dvision</td>
+<td>Divides the frist operator by the second</td>
+</tr>
+<tr>
+<td style="text-align:right">//</td>
+<td style="text-align:left">Integer Division</td>
+<td>Divides the first operator by the second with no remander</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>CODE</p>
+<pre><code class="language-python"><div>
+</div></code></pre>
+<p>OUTPUT</p>
+<pre><code><code><div>
+</div></code></code></pre>
+
+    </body>
+    </html>
