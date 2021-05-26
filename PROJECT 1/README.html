@@ -27,27 +27,57 @@
 <p>Goal of Project:</p>
 <p>Learn as much as possible about basic python</p>
 <p>TABLE OF CONTENTS</p>
-<ol>
+<ul>
 <li><a href="#1-introduction">1. Introduction</a></li>
-<li><a href="#2-examples">2. Examples</a>
-<ol>
+<li><a href="#2-body">2. Body</a>
+<ul>
 <li><a href="#21-basic-information">2.1. Basic Information</a>
-<ol>
+<ul>
 <li><a href="#211-building-and-compiling">2.1.1. Building and Compiling</a>
-<ol>
+<ul>
 <li><a href="#2111-command-line-python-interpreter">2.1.1.1. Command Line Python Interpreter</a></li>
 <li><a href="#2112-py-files">2.1.1.2. .py Files</a></li>
 <li><a href="#2113-advanced-interpreter">2.1.1.3. Advanced Interpreter</a></li>
-</ol>
+</ul>
 </li>
-</ol>
+</ul>
 </li>
-<li><a href="#22-variables">2.2. Variables</a></li>
-<li><a href="#23-math">2.3. Math</a></li>
-</ol>
+<li><a href="#22-syntax">2.2. Syntax</a>
+<ul>
+<li><a href="#221-white-space">2.2.1. White Space</a></li>
+</ul>
 </li>
-</ol>
-<h1 id="2-examples">2. Examples</h1>
+<li><a href="#23-variables">2.3. Variables</a>
+<ul>
+<li><a href="#231-built-in-scalar-types">2.3.1. Built in Scalar Types</a></li>
+<li><a href="#232-data-structures">2.3.2. Data Structures</a>
+<ul>
+<li><a href="#2321-examples">2.3.2.1. Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#24-math">2.4. Math</a></li>
+<li><a href="#25-logic-and-loops">2.5. Logic and Loops</a>
+<ul>
+<li><a href="#251-conditional-statments">2.5.1. Conditional Statments</a></li>
+<li><a href="#26-for-loops">2.6. For loops</a></li>
+<li><a href="#27-while-loops">2.7. While Loops</a></li>
+</ul>
+</li>
+<li><a href="#28-input-and-output">2.8. Input and Output</a>
+<ul>
+<li><a href="#281-screen">2.8.1. Screen</a></li>
+<li><a href="#282-files">2.8.2. Files</a></li>
+</ul>
+</li>
+<li><a href="#29-functions">2.9. Functions</a></li>
+<li><a href="#210-imports">2.10. Imports</a></li>
+</ul>
+</li>
+<li><a href="#code-project">Code Project</a></li>
+</ul>
+<h1 id="2-body">2. Body</h1>
 <table>
 <thead>
 <tr>
@@ -164,8 +194,120 @@ print(<span class="hljs-string">&quot;High&quot;</span>, <span class="hljs-numbe
 <p>There are other interpreters and IDE's for python. The best of these come in the conda package which includes the Spyder IDE and Jupyter Labs interpreter.</p>
 <p>The difference between an IDE and Interpreter when it comes to python is that the IDE is more tradional. You write your code then you run it. In an interpreter you can write and run your code line by line or in short segments. Below is an example image from the Juypter Labs extension for Visual Studio Code.</p>
 <p><img src="file:///c:\Users\night\repo\school\EGR491-PYMLDS\examples\juppy.ex.png" alt="JUPYTER LAB EXAMPLE"></p>
-<h2 id="22-variables">2.2. Variables</h2>
-<h2 id="23-math">2.3. Math</h2>
+<h2 id="22-syntax">2.2. Syntax</h2>
+<p>Python has a very lax syntax compared to many languages. The worst or best of these is that python does not require a semicolon at the end of each line. But there are a few differences between python and languages like Java.</p>
+<h3 id="221-white-space">2.2.1. White Space</h3>
+<p>In Java white space is generally ignored and is simplied used to increase readability. But python white space is used to distinguis blocks of code. For example the code below is invalid.</p>
+<pre><code class="language-python"><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sayHi</span>():</span>
+print(<span class="hljs-string">&quot;hi&quot;</span>)
+</div></code></pre>
+<p>And the output of the file makes it clear that line 2 is borken.</p>
+<pre><code>   File &quot;c:/Users/night/repo/school/EGR491-PYMLDS/examples/2-2_exmpl.py&quot;, line 2
+print(&quot;HI&quot;)
+^
+</code></pre>
+<p>To fix this simply add a couple spaces before your</p>
+<pre><code class="language-python"><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sayHi</span>():</span>
+  print(<span class="hljs-string">&quot;Hi&quot;</span>)
+</div></code></pre>
+<p>Another attribute of python is that every funtion and variable's scope begins at its defintion in the file or interpreter.</p>
+<h2 id="23-variables">2.3. Variables</h2>
+<p>Python is an object oriented programing lanuages and all variables avalible are objects. Unlike Java python variables are acutally pointers. Because of this it does not matter the type of your variable. Consider the code below,</p>
+<pre><code class="language-python"><div>x = <span class="hljs-number">5</span> <span class="hljs-comment"># x is an integer</span>
+x = <span class="hljs-string">&#x27;BONJOUR&#x27;</span> <span class="hljs-comment"># x is a string</span>
+</div></code></pre>
+<p>Those familiar with languages like Java and Ada will know that this does not happen normally. This is because of variables in python being pointers.</p>
+<h3 id="231-built-in-scalar-types">2.3.1. Built in Scalar Types</h3>
+<p>Python includes common built in types such as</p>
+<ul>
+<li>int</li>
+<li>float</li>
+<li>bool</li>
+<li>str (String type)</li>
+</ul>
+<p>Python also includes a few uncomon types</p>
+<ul>
+<li>complex: Complex Number such as 1 + 1j</li>
+<li>NoneType: This represents a Null value</li>
+</ul>
+<h3 id="232-data-structures">2.3.2. Data Structures</h3>
+<p>Arrays are ubiqutus to programing and are neccesary for many applications. Thus many languages have many types of arrays and other related data structures.
+Pythons four built in data stuctures cover many of the needs of data science and mathmatics.</p>
+<ul>
+<li><strong>Lists</strong> are common ordered lists and can be assed by using a command separated list with &quot;,&quot;'s between each item between squre brackets.</li>
+<li><strong>Tuples</strong> are immuatable (unchanging) list. This is assigned list a normal list but with</li>
+<li><strong>Sets</strong> This are unordered lists but sets can only have unique values. To assign a set put a comma separated list between curly brackets <em>{}</em></li>
+<li><strong>Dicts</strong> or dictionaries are sets with contain a key value mappings. to assign a dict to a variable each key value parir will be setparated by commands with a colon between the key and value like this &quot;x = {'key1':1,'key2':2}&quot;</li>
+</ul>
+<p>Below is an example of how to use and access each of these arrays</p>
+<h4 id="2321-examples">2.3.2.1. Examples</h4>
+<pre><code class="language-python"><div>lst = [<span class="hljs-number">1</span>,<span class="hljs-string">&quot;two&quot;</span>,<span class="hljs-number">3</span>, [<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]]
+
+print(lst)      <span class="hljs-comment"># Prints the whole list</span>
+print(lst[<span class="hljs-number">0</span>])   <span class="hljs-comment"># Prints list item 1</span>
+print(lst[<span class="hljs-number">-1</span>])  <span class="hljs-comment"># Prints the last Item of the list</span>
+print(lst[<span class="hljs-number">2</span>:])  <span class="hljs-comment"># Prints Items from index to on</span>
+print(lst[:<span class="hljs-number">3</span>])  <span class="hljs-comment"># Prints Items 0 to three</span>
+print(lst[<span class="hljs-number">1</span>:<span class="hljs-number">3</span>]) <span class="hljs-comment"># Prints Items 1, 2 and 3</span>
+print(lst[<span class="hljs-number">-3</span>:]) <span class="hljs-comment"># Prints the last three items</span>
+lst.append(<span class="hljs-string">&quot;THIS WORKS&quot;</span>)
+print(lst)
+</div></code></pre>
+<p>OUTPUT</p>
+<pre><code><code><div>[1, 'two', 3, [4, 5]]
+1
+[4, 5]
+[3, [4, 5]]
+[1, 'two', 3]
+['two', 3]
+['two', 3, [4, 5]]
+[1, 'two', 3, [4, 5], 'THIS WORKS']
+</div></code></code></pre>
+<pre><code class="language-python"><div>tup = (<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)
+<span class="hljs-comment"># you can do the same things as you do with lists</span>
+print(tup)
+print(tup[<span class="hljs-number">1</span>])
+<span class="hljs-comment"># you cannot modify the tupple in any way</span>
+tup[<span class="hljs-number">1</span>] = <span class="hljs-number">7</span> <span class="hljs-comment"># This gives a TypeError because</span>
+</div></code></pre>
+<p>OUTPUT</p>
+<pre><code><code><div>(0, 1, 2)
+1
+Traceback (most recent call last):
+  File &quot;c:/Users/night/repo/school/EGR491-PYMLDS/PROJECT 1/Example3.py&quot;, line 6, in &lt;module&gt;
+    tup[1] = 7
+TypeError: 'tuple' object does not support item assignment
+</div></code></code></pre>
+<pre><code class="language-python"><div>
+setObj = {<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>}
+<span class="hljs-comment">#The Same as a tupple or a list</span>
+print(setObj)
+<span class="hljs-comment"># But you do have access to unique operations</span>
+print(setObj.union({<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>})) <span class="hljs-comment"># Union: outputs all items contained in the sets duplicates are ignored you can also use |</span>
+print(setObj.intersection({<span class="hljs-number">1</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>})) <span class="hljs-comment"># Intersection: outputs the items shared in each set: you can also use &amp;</span>
+print(setObj.difference({<span class="hljs-number">0</span>,<span class="hljs-number">2</span>})) <span class="hljs-comment"># Difference: outputs the items in setObj  but not in the interal set you can also use -</span>
+print(setObj.symmetric_difference({<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>})) <span class="hljs-comment">#Symetric Difference outputs items that are in either list but not both you can also use ^</span>
+</div></code></pre>
+<p>OUTPUT</p>
+<pre><code><code><div>{0, 1, 2}
+{0, 1, 2, 3, 4, 5}
+{1}
+{1}
+{9, 1}
+</div></code></code></pre>
+<pre><code class="language-python"><div>dic = {<span class="hljs-number">1</span>:<span class="hljs-string">&quot;THIS&quot;</span>,<span class="hljs-number">2</span>:<span class="hljs-string">&quot;THAT&quot;</span>,<span class="hljs-number">3</span>:<span class="hljs-string">&quot;NOT&quot;</span>}
+pritn(dic[<span class="hljs-number">1</span>]) <span class="hljs-comment"># In this case you must access by a key not by the index</span>
+<span class="hljs-comment">#Adding a new key value pair</span>
+dic[<span class="hljs-string">&quot;SWITCH&quot;</span>] = <span class="hljs-number">99</span>
+print(dic)
+print(dic[<span class="hljs-string">&quot;SWITCH&quot;</span>])
+</div></code></pre>
+<p>OUTPUT</p>
+<pre><code><code><div>THIS
+{1: 'THIS', 2: 'THAT', 3: 'NOT', 'SWITCH': 99}
+99
+</div></code></code></pre>
+<h2 id="24-math">2.4. Math</h2>
 <p>In this solution we will show the basic mathmatical operations of python. This include the following:</p>
 <table>
 <thead>
@@ -209,12 +351,95 @@ print(<span class="hljs-string">&quot;High&quot;</span>, <span class="hljs-numbe
 </tbody>
 </table>
 <hr>
-<p>CODE</p>
-<pre><code class="language-python"><div>
+<ul>
+<li>CODE</li>
+</ul>
+<pre><code class="language-python"><div>x = <span class="hljs-number">7</span>
+print(x)
+y = x + <span class="hljs-number">5</span> <span class="hljs-comment"># y = 12</span>
+print(y)
+y = x * <span class="hljs-number">2</span>  <span class="hljs-comment"># y = 14</span>
+print(y)
+y = x ** <span class="hljs-number">2</span> <span class="hljs-comment"># y = 49</span>
+print(y)
+y =  x / <span class="hljs-number">2</span> <span class="hljs-comment"># y = 3.5</span>
+print(y)
+y = x // <span class="hljs-number">2</span> <span class="hljs-comment"># y = 3</span>
+print(y)
+
 </div></code></pre>
-<p>OUTPUT</p>
-<pre><code><code><div>
+<ul>
+<li>OUTPUT</li>
+</ul>
+<pre><code><code><div>7
+12
+14
+49
+3.5
+3
 </div></code></code></pre>
+<h2 id="25-logic-and-loops">2.5. Logic and Loops</h2>
+<h3 id="251-conditional-statments">2.5.1. Conditional Statments</h3>
+<p>Python conditional staments uses the following keywords</p>
+<ul>
+<li><em>if</em>: opening statment for a logic block</li>
+<li><em>elif</em>: the quivalent to else if in other languages</li>
+<li><em>else</em> The final else stments</li>
+</ul>
+<p>Python includes server bitwise operators that can be used in logic statments such as</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>AND</td>
+</tr>
+<tr>
+<td>|</td>
+<td>OR</td>
+</tr>
+<tr>
+<td>^</td>
+<td>XOR</td>
+</tr>
+<tr>
+<td>~</td>
+<td>NOT</td>
+</tr>
+</tbody>
+</table>
+<p>If statments are formed as follows</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">100</span>:
+  print(<span class="hljs-string">&quot;x is greater than 100&quot;</span>)
+<span class="hljs-keyword">elif</span> x == <span class="hljs-number">100</span>:
+   print(<span class="hljs-string">&quot;x is 100&quot;</span>)
+<span class="hljs-keyword">else</span>:
+  print(<span class="hljs-string">&quot;x is less than 100&quot;</span>)
+</div></code></pre>
+<h3 id="26-for-loops">2.6. For loops</h3>
+<p>A python for loops looks like the code below,</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">90</span>, <span class="hljs-number">100</span>): <span class="hljs-comment">#Prints all values from 90 to 100</span>
+    print(x)
+</div></code></pre>
+<h3 id="27-while-loops">2.7. While Loops</h3>
+<h2 id="28-input-and-output">2.8. Input and Output</h2>
+<h3 id="281-screen">2.8.1. Screen</h3>
+<h3 id="282-files">2.8.2. Files</h3>
+<h2 id="29-functions">2.9. Functions</h2>
+<p>A function in python is declared by using the <em>Def</em> keyword followed by the name of your function, then place all parameters by name in a list after</p>
+<h2 id="210-imports">2.10. Imports</h2>
+<p>In Java you can get predesigned packages by doing, &quot;import package_name.&quot;
+In python there are not packages but <strong>modules</strong> which must first be installed. There are some good preinstalled such as numpy adds extended mathmatical abilities.</p>
+<p>If you wish to use thrid party modules you follow the same syntax just ensure that they are installed. The most common way to instal python modules is using pip, below is an example of how to install the pygame modules which adds fun ways to make games.</p>
+<pre><code><code><div>pip install pygame
+</div></code></code></pre>
+<p>A warning to those who are just installing python for the first time. Make sure to install python to the PATH during the install process this will make using pip much easier.</p>
+<h1 id="code-project">Code Project</h1>
 
     </body>
     </html>

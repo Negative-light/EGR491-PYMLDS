@@ -6,17 +6,32 @@ Learn as much as possible about basic python
 
 TABLE OF CONTENTS
 
-1. [1. Introduction](#1-introduction)
-2. [2. Examples](#2-examples)
-   1. [2.1. Basic Information](#21-basic-information)
-      1. [2.1.1. Building and Compiling](#211-building-and-compiling)
-         1. [2.1.1.1. Command Line Python Interpreter](#2111-command-line-python-interpreter)
-         2. [2.1.1.2. .py Files](#2112-py-files)
-         3. [2.1.1.3. Advanced Interpreter](#2113-advanced-interpreter)
-   2. [2.2. Variables](#22-variables)
-   3. [2.3. Math](#23-math)
+- [1. Introduction](#1-introduction)
+- [2. Body](#2-body)
+  - [2.1. Basic Information](#21-basic-information)
+    - [2.1.1. Building and Compiling](#211-building-and-compiling)
+      - [2.1.1.1. Command Line Python Interpreter](#2111-command-line-python-interpreter)
+      - [2.1.1.2. .py Files](#2112-py-files)
+      - [2.1.1.3. Advanced Interpreter](#2113-advanced-interpreter)
+  - [2.2. Syntax](#22-syntax)
+    - [2.2.1. White Space](#221-white-space)
+  - [2.3. Variables](#23-variables)
+    - [2.3.1. Built in Scalar Types](#231-built-in-scalar-types)
+    - [2.3.2. Data Structures](#232-data-structures)
+      - [2.3.2.1. Examples](#2321-examples)
+  - [2.4. Math](#24-math)
+  - [2.5. Logic and Loops](#25-logic-and-loops)
+    - [2.5.1. Conditional Statments](#251-conditional-statments)
+    - [2.6. For loops](#26-for-loops)
+    - [2.7. While Loops](#27-while-loops)
+  - [2.8. Input and Output](#28-input-and-output)
+    - [2.8.1. Screen](#281-screen)
+    - [2.8.2. Files](#282-files)
+  - [2.9. Functions](#29-functions)
+  - [2.10. Imports](#210-imports)
+- [Code Project](#code-project)
 
-# 2. Examples
+# 2. Body
 
 |                Need to show | How to show  |
 | --------------------------: | :----------- |
@@ -106,9 +121,160 @@ The difference between an IDE and Interpreter when it comes to python is that th
 
 ![JUPYTER LAB EXAMPLE](../examples/juppy.ex.png)
 
-## 2.2. Variables
+## 2.2. Syntax
 
-## 2.3. Math
+Python has a very lax syntax compared to many languages. The worst or best of these is that python does not require a semicolon at the end of each line. But there are a few differences between python and languages like Java.
+
+### 2.2.1. White Space
+
+In Java white space is generally ignored and is simplied used to increase readability. But python white space is used to distinguis blocks of code. For example the code below is invalid.
+
+```python
+def sayHi():
+print("hi")
+```
+
+And the output of the file makes it clear that line 2 is borken.
+
+       File "c:/Users/night/repo/school/EGR491-PYMLDS/examples/2-2_exmpl.py", line 2
+    print("HI")
+    ^
+
+To fix this simply add a couple spaces before your
+
+```python
+def sayHi():
+  print("Hi")
+```
+
+Another attribute of python is that every funtion and variable's scope begins at its defintion in the file or interpreter.
+
+## 2.3. Variables
+
+Python is an object oriented programing lanuages and all variables avalible are objects. Unlike Java python variables are acutally pointers. Because of this it does not matter the type of your variable. Consider the code below,
+
+```python
+x = 5 # x is an integer
+x = 'BONJOUR' # x is a string
+```
+
+Those familiar with languages like Java and Ada will know that this does not happen normally. This is because of variables in python being pointers.
+
+### 2.3.1. Built in Scalar Types
+
+Python includes common built in types such as
+
+- int
+- float
+- bool
+- str (String type)
+
+Python also includes a few uncomon types
+
+- complex: Complex Number such as 1 + 1j
+- NoneType: This represents a Null value
+
+### 2.3.2. Data Structures
+
+Arrays are ubiqutus to programing and are neccesary for many applications. Thus many languages have many types of arrays and other related data structures.
+Pythons four built in data stuctures cover many of the needs of data science and mathmatics.
+
+- **Lists** are common ordered lists and can be assed by using a command separated list with ","'s between each item between squre brackets.
+- **Tuples** are immuatable (unchanging) list. This is assigned list a normal list but with
+- **Sets** This are unordered lists but sets can only have unique values. To assign a set put a comma separated list between curly brackets _{}_
+- **Dicts** or dictionaries are sets with contain a key value mappings. to assign a dict to a variable each key value parir will be setparated by commands with a colon between the key and value like this "x = {'key1':1,'key2':2}"
+
+Below is an example of how to use and access each of these arrays
+
+#### 2.3.2.1. Examples
+
+```python
+lst = [1,"two",3, [4,5]]
+
+print(lst)      # Prints the whole list
+print(lst[0])   # Prints list item 1
+print(lst[-1])  # Prints the last Item of the list
+print(lst[2:])  # Prints Items from index to on
+print(lst[:3])  # Prints Items 0 to three
+print(lst[1:3]) # Prints Items 1, 2 and 3
+print(lst[-3:]) # Prints the last three items
+lst.append("THIS WORKS")
+print(lst)
+```
+
+OUTPUT
+
+```
+[1, 'two', 3, [4, 5]]
+1
+[4, 5]
+[3, [4, 5]]
+[1, 'two', 3]
+['two', 3]
+['two', 3, [4, 5]]
+[1, 'two', 3, [4, 5], 'THIS WORKS']
+```
+
+```python
+tup = (0,1,2)
+# you can do the same things as you do with lists
+print(tup)
+print(tup[1])
+# you cannot modify the tupple in any way
+tup[1] = 7 # This gives a TypeError because
+```
+
+OUTPUT
+
+```
+(0, 1, 2)
+1
+Traceback (most recent call last):
+  File "c:/Users/night/repo/school/EGR491-PYMLDS/PROJECT 1/Example3.py", line 6, in <module>
+    tup[1] = 7
+TypeError: 'tuple' object does not support item assignment
+```
+
+```python
+
+setObj = {0,1,2}
+#The Same as a tupple or a list
+print(setObj)
+# But you do have access to unique operations
+print(setObj.union({2,3,4,5})) # Union: outputs all items contained in the sets duplicates are ignored you can also use |
+print(setObj.intersection({1,7,9})) # Intersection: outputs the items shared in each set: you can also use &
+print(setObj.difference({0,2})) # Difference: outputs the items in setObj  but not in the interal set you can also use -
+print(setObj.symmetric_difference({0,2,9})) #Symetric Difference outputs items that are in either list but not both you can also use ^
+```
+
+OUTPUT
+
+```
+{0, 1, 2}
+{0, 1, 2, 3, 4, 5}
+{1}
+{1}
+{9, 1}
+```
+
+```python
+dic = {1:"THIS",2:"THAT",3:"NOT"}
+pritn(dic[1]) # In this case you must access by a key not by the index
+#Adding a new key value pair
+dic["SWITCH"] = 99
+print(dic)
+print(dic["SWITCH"])
+```
+
+OUTPUT
+
+```
+THIS
+{1: 'THIS', 2: 'THAT', 3: 'NOT', 'SWITCH': 99}
+99
+```
+
+## 2.4. Math
 
 In this solution we will show the basic mathmatical operations of python. This include the following:
 
@@ -123,14 +289,97 @@ In this solution we will show the basic mathmatical operations of python. This i
 
 ---
 
-CODE
+- CODE
 
 ```python
+x = 7
+print(x)
+y = x + 5 # y = 12
+print(y)
+y = x * 2  # y = 14
+print(y)
+y = x ** 2 # y = 49
+print(y)
+y =  x / 2 # y = 3.5
+print(y)
+y = x // 2 # y = 3
+print(y)
 
 ```
 
-OUTPUT
+- OUTPUT
 
 ```
+7
+12
+14
+49
+3.5
+3
+```
+
+## 2.5. Logic and Loops
+
+### 2.5.1. Conditional Statments
+
+Python conditional staments uses the following keywords
+
+- _if_: opening statment for a logic block
+- _elif_: the quivalent to else if in other languages
+- _else_ The final else stments
+
+Python includes server bitwise operators that can be used in logic statments such as
+
+|     |     |
+| --- | --- |
+| &   | AND |
+| \|  | OR  |
+| ^   | XOR |
+| ~   | NOT |
+
+If statments are formed as follows
+
+```python
+if x > 100:
+  print("x is greater than 100")
+elif x == 100:
+   print("x is 100")
+else:
+  print("x is less than 100")
+```
+
+### 2.6. For loops
+
+A python for loops looks like the code below,
+
+```python
+for x in range(90, 100): #Prints all values from 90 to 100
+    print(x)
+```
+
+### 2.7. While Loops
+
+## 2.8. Input and Output
+
+### 2.8.1. Screen
+
+### 2.8.2. Files
+
+## 2.9. Functions
+
+A function in python is declared by using the _Def_ keyword followed by the name of your function, then place all parameters by name in a list after
+
+## 2.10. Imports
+
+In Java you can get predesigned packages by doing, "import package_name."
+In python there are not packages but **modules** which must first be installed. There are some good preinstalled such as numpy adds extended mathmatical abilities.
+
+If you wish to use thrid party modules you follow the same syntax just ensure that they are installed. The most common way to instal python modules is using pip, below is an example of how to install the pygame modules which adds fun ways to make games.
 
 ```
+pip install pygame
+```
+
+A warning to those who are just installing python for the first time. Make sure to install python to the PATH during the install process this will make using pip much easier.
+
+# Code Project
