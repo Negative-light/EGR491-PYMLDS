@@ -22,14 +22,14 @@ TABLE OF CONTENTS
   - [2.4. Math](#24-math)
   - [2.5. Logic and Loops](#25-logic-and-loops)
     - [2.5.1. Conditional Statments](#251-conditional-statments)
-    - [2.6. For loops](#26-for-loops)
-    - [2.7. While Loops](#27-while-loops)
-  - [2.8. Input and Output](#28-input-and-output)
-    - [2.8.1. Screen](#281-screen)
-    - [2.8.2. Files](#282-files)
-  - [2.9. Functions](#29-functions)
-  - [2.10. Imports](#210-imports)
-- [Code Project](#code-project)
+    - [2.5.2. For loops](#252-for-loops)
+    - [2.5.3. While Loops](#253-while-loops)
+  - [2.6. Input and Output](#26-input-and-output)
+    - [2.6.1. Screen](#261-screen)
+    - [2.6.2. Files](#262-files)
+  - [2.7. Functions](#27-functions)
+  - [2.8. Imports](#28-imports)
+- [3. Code Project](#3-code-project)
 
 # 2. Body
 
@@ -278,14 +278,15 @@ THIS
 
 In this solution we will show the basic mathmatical operations of python. This include the following:
 
-| Operation |                  |                                                           |
-| --------: | :--------------- | --------------------------------------------------------- |
-|         + | Addition         | Adds the two operators                                    |
-|         - | Subtraction      | Subtracts the first operator from the second              |
-|        \* | Multiplication   | Multiplies the two operators                              |
-|      \*\* | Power            | Raser the first operator to the second                    |
-|         / | Nomal Dvision    | Divides the frist operator by the second                  |
-|        // | Integer Division | Divides the first operator by the second with no remander |
+| Operation |                                                                                   |                                                           |
+| --------: | :-------------------------------------------------------------------------------- | --------------------------------------------------------- |
+|         + | Addition                                                                          | Adds the two operators                                    |
+|         - | Subtraction                                                                       | Subtracts the first operator from the second              |
+|        \* | Multiplication                                                                    | Multiplies the two operators                              |
+|      \*\* | Power                                                                             | Raser the first operator to the second                    |
+|         / | Nomal Dvision                                                                     | Divides the frist operator by the second                  |
+|        // | Integer Division                                                                  | Divides the first operator by the second with no remander |
+|         % | Returns the integer remainder of a divsion between the first and second operator. |
 
 ---
 
@@ -348,7 +349,7 @@ else:
   print("x is less than 100")
 ```
 
-### 2.6. For loops
+### 2.5.2. For loops
 
 A python for loops looks like the code below,
 
@@ -357,19 +358,104 @@ for x in range(90, 100): #Prints all values from 90 to 100
     print(x)
 ```
 
-### 2.7. While Loops
+There is also a specalse for of the for loop which includes an else statment which may be used when you use a break statment in a loop.
 
-## 2.8. Input and Output
+```python
+for x in [2,3,4]:
+    if x == 7
+       print(x)
+       break
+else:
+  print("There is no 7")
+```
 
-### 2.8.1. Screen
+This is not used as often as there are other ways to handle this type of operation.
 
-### 2.8.2. Files
+### 2.5.3. While Loops
 
-## 2.9. Functions
+Below is a python while loop.
 
-A function in python is declared by using the _Def_ keyword followed by the name of your function, then place all parameters by name in a list after
+```python
+x = 10
+while x > 0:
+  if (x % 3) == 0:
+     x *= 5
+     x -= 7
+     continue
+  print(x)
+  x -= 1
+  if x > 100:
+     break
+```
 
-## 2.10. Imports
+You may notice that there is both a break and continue statment in this code block. The _continue_ keyword essentially ends a itteration of a loop starting back at the begining. The _break_ keyword works just as it does in other languages.
+
+## 2.6. Input and Output
+
+A program is useless without a way to interface with a human. Python has many ways to interface with people and files but we will only cover a few basics here.
+
+### 2.6.1. Screen
+
+Python is often used in an interpreter and thus much of its input can come from there, but there are some times when you need to print to the console or recieve input from it.
+
+To print to the screen in python you simply use the _print()_
+The print funciton can print strings and simple concatenation can work, but you can also input each item to print in a comma separated list.
+
+```python
+#These two statmeents will print the same result
+x = 100
+print("x =" + x)
+print("x =",x)
+```
+
+Input from the console is simply placing the _input()_ function after an assiemnt operator.
+
+```python
+print("Enter a value: ", end=" ")
+x = input()
+print("You Said ", x)
+```
+
+### 2.6.2. Files
+
+When working with files you will need the _open()_ function which has two parameters. The first is the file path, this can be either a relative path or a exact path. The second is the method to open the file with.
+
+- "r" opens the file for reading if you assign this to a variable you can use .read() to read the whole file or .read(x) to read x number of lines.
+- "a" will write to then end of a file with the .wrtie() function.
+- "w" will write to the file and overwrite any exsisting content in the file.
+
+Here is an example of how to read and write to files.
+
+```python
+f = open("test.md", "w")
+f.write("# This is a header\n")
+f.close()
+f = open("test.md", "a")
+f.write("## This is a second level header\n")
+f.close()
+f = open("test.md", "r")
+
+print(f.read())
+```
+
+OUTPUT
+
+```
+# This is a header
+## This is a second level header
+```
+
+## 2.7. Functions
+
+A function in python is white decalred using the **Def** keyword and its delaration must end with a colon.
+
+```python
+#EXAMPLE FUNCTION
+def myFunction():
+  print("This is my function. There are many like it, but this one is mine.")
+```
+
+## 2.8. Imports
 
 In Java you can get predesigned packages by doing, "import package_name."
 In python there are not packages but **modules** which must first be installed. There are some good preinstalled such as numpy adds extended mathmatical abilities.
@@ -382,4 +468,6 @@ pip install pygame
 
 A warning to those who are just installing python for the first time. Make sure to install python to the PATH during the install process this will make using pip much easier.
 
-# Code Project
+There is also a way to import using the _from_ keyword. This allows you to import specific componesnts of a modules of simply do "from \<package\> import \*" to load all compoents of a modules.
+
+# 3. Code Project

@@ -61,21 +61,21 @@
 <li><a href="#25-logic-and-loops">2.5. Logic and Loops</a>
 <ul>
 <li><a href="#251-conditional-statments">2.5.1. Conditional Statments</a></li>
-<li><a href="#26-for-loops">2.6. For loops</a></li>
-<li><a href="#27-while-loops">2.7. While Loops</a></li>
+<li><a href="#252-for-loops">2.5.2. For loops</a></li>
+<li><a href="#253-while-loops">2.5.3. While Loops</a></li>
 </ul>
 </li>
-<li><a href="#28-input-and-output">2.8. Input and Output</a>
+<li><a href="#26-input-and-output">2.6. Input and Output</a>
 <ul>
-<li><a href="#281-screen">2.8.1. Screen</a></li>
-<li><a href="#282-files">2.8.2. Files</a></li>
+<li><a href="#261-screen">2.6.1. Screen</a></li>
+<li><a href="#262-files">2.6.2. Files</a></li>
 </ul>
 </li>
-<li><a href="#29-functions">2.9. Functions</a></li>
-<li><a href="#210-imports">2.10. Imports</a></li>
+<li><a href="#27-functions">2.7. Functions</a></li>
+<li><a href="#28-imports">2.8. Imports</a></li>
 </ul>
 </li>
-<li><a href="#code-project">Code Project</a></li>
+<li><a href="#3-code-project">3. Code Project</a></li>
 </ul>
 <h1 id="2-body">2. Body</h1>
 <table>
@@ -348,6 +348,11 @@ print(dic[<span class="hljs-string">&quot;SWITCH&quot;</span>])
 <td style="text-align:left">Integer Division</td>
 <td>Divides the first operator by the second with no remander</td>
 </tr>
+<tr>
+<td style="text-align:right">%</td>
+<td style="text-align:left">Returns the integer remainder of a divsion between the first and second operator.</td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <hr>
@@ -421,25 +426,87 @@ print(y)
 <span class="hljs-keyword">else</span>:
   print(<span class="hljs-string">&quot;x is less than 100&quot;</span>)
 </div></code></pre>
-<h3 id="26-for-loops">2.6. For loops</h3>
+<h3 id="252-for-loops">2.5.2. For loops</h3>
 <p>A python for loops looks like the code below,</p>
 <pre><code class="language-python"><div><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> range(<span class="hljs-number">90</span>, <span class="hljs-number">100</span>): <span class="hljs-comment">#Prints all values from 90 to 100</span>
     print(x)
 </div></code></pre>
-<h3 id="27-while-loops">2.7. While Loops</h3>
-<h2 id="28-input-and-output">2.8. Input and Output</h2>
-<h3 id="281-screen">2.8.1. Screen</h3>
-<h3 id="282-files">2.8.2. Files</h3>
-<h2 id="29-functions">2.9. Functions</h2>
-<p>A function in python is declared by using the <em>Def</em> keyword followed by the name of your function, then place all parameters by name in a list after</p>
-<h2 id="210-imports">2.10. Imports</h2>
+<p>There is also a specalse for of the for loop which includes an else statment which may be used when you use a break statment in a loop.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> [<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]:
+    <span class="hljs-keyword">if</span> x == <span class="hljs-number">7</span>
+       print(x)
+       <span class="hljs-keyword">break</span>
+<span class="hljs-keyword">else</span>:
+  print(<span class="hljs-string">&quot;There is no 7&quot;</span>)
+</div></code></pre>
+<p>This is not used as often as there are other ways to handle this type of operation.</p>
+<h3 id="253-while-loops">2.5.3. While Loops</h3>
+<p>Below is a python while loop.</p>
+<pre><code class="language-python"><div>x = <span class="hljs-number">10</span>
+<span class="hljs-keyword">while</span> x &gt; <span class="hljs-number">0</span>:
+  <span class="hljs-keyword">if</span> (x % <span class="hljs-number">3</span>) == <span class="hljs-number">0</span>:
+     x *= <span class="hljs-number">5</span>
+     x -= <span class="hljs-number">7</span>
+     <span class="hljs-keyword">continue</span>
+  print(x)
+  x -= <span class="hljs-number">1</span>
+  <span class="hljs-keyword">if</span> x &gt; <span class="hljs-number">100</span>:
+     <span class="hljs-keyword">break</span>
+</div></code></pre>
+<p>You may notice that there is both a break and continue statment in this code block. The <em>continue</em> keyword essentially ends a itteration of a loop starting back at the begining. The <em>break</em> keyword works just as it does in other languages.</p>
+<h2 id="26-input-and-output">2.6. Input and Output</h2>
+<p>A program is useless without a way to interface with a human. Python has many ways to interface with people and files but we will only cover a few basics here.</p>
+<h3 id="261-screen">2.6.1. Screen</h3>
+<p>Python is often used in an interpreter and thus much of its input can come from there, but there are some times when you need to print to the console or recieve input from it.</p>
+<p>To print to the screen in python you simply use the <em>print()</em>
+The print funciton can print strings and simple concatenation can work, but you can also input each item to print in a comma separated list.</p>
+<pre><code class="language-python"><div><span class="hljs-comment">#These two statmeents will print the same result</span>
+x = <span class="hljs-number">100</span>
+print(<span class="hljs-string">&quot;x =&quot;</span> + x)
+print(<span class="hljs-string">&quot;x =&quot;</span>,x)
+</div></code></pre>
+<p>Input from the console is simply placing the <em>input()</em> function after an assiemnt operator.</p>
+<pre><code class="language-python"><div>print(<span class="hljs-string">&quot;Enter a value: &quot;</span>, end=<span class="hljs-string">&quot; &quot;</span>)
+x = input()
+print(<span class="hljs-string">&quot;You Said &quot;</span>, x)
+</div></code></pre>
+<h3 id="262-files">2.6.2. Files</h3>
+<p>When working with files you will need the <em>open()</em> function which has two parameters. The first is the file path, this can be either a relative path or a exact path. The second is the method to open the file with.</p>
+<ul>
+<li>&quot;r&quot; opens the file for reading if you assign this to a variable you can use .read() to read the whole file or .read(x) to read x number of lines.</li>
+<li>&quot;a&quot; will write to then end of a file with the .wrtie() function.</li>
+<li>&quot;w&quot; will write to the file and overwrite any exsisting content in the file.</li>
+</ul>
+<p>Here is an example of how to read and write to files.</p>
+<pre><code class="language-python"><div>f = open(<span class="hljs-string">&quot;test.md&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>)
+f.write(<span class="hljs-string">&quot;# This is a header\n&quot;</span>)
+f.close()
+f = open(<span class="hljs-string">&quot;test.md&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>)
+f.write(<span class="hljs-string">&quot;## This is a second level header\n&quot;</span>)
+f.close()
+f = open(<span class="hljs-string">&quot;test.md&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>)
+
+print(f.read())
+</div></code></pre>
+<p>OUTPUT</p>
+<pre><code><code><div># This is a header
+## This is a second level header
+</div></code></code></pre>
+<h2 id="27-functions">2.7. Functions</h2>
+<p>A function in python is white decalred using the <strong>Def</strong> keyword and its delaration must end with a colon.</p>
+<pre><code class="language-python"><div><span class="hljs-comment">#EXAMPLE FUNCTION</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myFunction</span>():</span>
+  print(<span class="hljs-string">&quot;This is my function. There are many like it, but this one is mine.&quot;</span>)
+</div></code></pre>
+<h2 id="28-imports">2.8. Imports</h2>
 <p>In Java you can get predesigned packages by doing, &quot;import package_name.&quot;
 In python there are not packages but <strong>modules</strong> which must first be installed. There are some good preinstalled such as numpy adds extended mathmatical abilities.</p>
 <p>If you wish to use thrid party modules you follow the same syntax just ensure that they are installed. The most common way to instal python modules is using pip, below is an example of how to install the pygame modules which adds fun ways to make games.</p>
 <pre><code><code><div>pip install pygame
 </div></code></code></pre>
 <p>A warning to those who are just installing python for the first time. Make sure to install python to the PATH during the install process this will make using pip much easier.</p>
-<h1 id="code-project">Code Project</h1>
+<p>There is also a way to import using the <em>from</em> keyword. This allows you to import specific componesnts of a modules of simply do &quot;from &lt;package&gt; import *&quot; to load all compoents of a modules.</p>
+<h1 id="3-code-project">3. Code Project</h1>
 
     </body>
     </html>
