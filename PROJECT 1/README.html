@@ -75,7 +75,12 @@
 <li><a href="#28-imports">2.8. Imports</a></li>
 </ul>
 </li>
-<li><a href="#3-code-project">3. Code Project</a></li>
+<li><a href="#3-code-project">3. Code Project</a>
+<ul>
+<li><a href="#31-sameple-output">3.1. Sameple output</a></li>
+<li><a href="#32-code">3.2. Code</a></li>
+</ul>
+</li>
 </ul>
 <h1 id="2-body">2. Body</h1>
 <table>
@@ -507,6 +512,96 @@ In python there are not packages but <strong>modules</strong> which must first b
 <p>A warning to those who are just installing python for the first time. Make sure to install python to the PATH during the install process this will make using pip much easier.</p>
 <p>There is also a way to import using the <em>from</em> keyword. This allows you to import specific componesnts of a modules of simply do &quot;from &lt;package&gt; import *&quot; to load all compoents of a modules.</p>
 <h1 id="3-code-project">3. Code Project</h1>
+<h2 id="31-sameple-output">3.1. Sameple output</h2>
+<pre><code><code><div>EGR491 Project 1: Paul A. Pace
+This project is designed to display various simple attributes of python.
+Please input either a comma separated list OR a file path.1,3;5,2,9
+Reading List now!!!
+1,3;5,2,9
+INVALID VALUE:  3;5
+The Sum of your list is  12
+Your list without duplicates is  {1, 2, 9}
+[2]
+</div></code></code></pre>
+<h2 id="32-code">3.2. Code</h2>
+<pre><code class="language-python"><div><span class="hljs-comment"># To add a new cell, type &#x27;# %%&#x27;</span>
+<span class="hljs-comment"># To add a new markdown cell, type &#x27;# %% [markdown]&#x27;</span>
+<span class="hljs-comment"># %%</span>
+<span class="hljs-comment"># Function to check for a file</span>
+<span class="hljs-comment"># returns TRUE if there is a file, else returns false</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">check4File</span>(<span class="hljs-params">filePath</span>):</span>
+    <span class="hljs-keyword">import</span> os.path
+    <span class="hljs-keyword">return</span> os.path.isfile(filePath)
+
+
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-comment"># reads a file and loads it into a list, all new lines are treated as the default separator</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readFile</span>(<span class="hljs-params">path</span>):</span>
+    f = open(path, <span class="hljs-string">&quot;r&quot;</span>)
+    output = <span class="hljs-string">&quot;&quot;</span>
+    <span class="hljs-keyword">for</span> l <span class="hljs-keyword">in</span> f:
+        output += <span class="hljs-string">&#x27;,&#x27;</span>
+        output += str(l.strip())
+    output = output[<span class="hljs-number">1</span>:]
+    <span class="hljs-keyword">return</span> output
+
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-comment"># Function that reads the users input and elminates all non recoverable values</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">loadLst</span>(<span class="hljs-params">strLst</span>):</span>
+    lst = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str(strLst).split(<span class="hljs-string">&#x27;,&#x27;</span>):
+        <span class="hljs-keyword">try</span>:
+            lst.append(int(i))
+        <span class="hljs-keyword">except</span>:
+            print(<span class="hljs-string">&quot;INVALID VALUE: &quot;</span>, i)
+
+    <span class="hljs-keyword">return</span> lst
+
+
+
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-comment"># Opening Title</span>
+print(<span class="hljs-string">&quot;EGR491 Project 1: Paul A. Pace&quot;</span>)
+print(<span class="hljs-string">&quot;This project is designed to display various simple attributes of python.&quot;</span>)
+userData = input(<span class="hljs-string">&quot;Please input either a comma separated list OR a file path.&quot;</span>)
+
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-comment"># Check for if userData is a file else read the list</span>
+<span class="hljs-keyword">if</span> check4File(userData):
+    print(<span class="hljs-string">&quot;Reading From your file&quot;</span>)
+    userData = readFile(userData)
+<span class="hljs-keyword">else</span>:
+    print(<span class="hljs-string">&quot;Reading List now!!!&quot;</span>)
+
+
+<span class="hljs-comment"># Print out userData</span>
+print(userData)
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-comment"># Make your list from the userData and check for its sum</span>
+myList = loadLst(userData)
+
+m = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> myList:
+    m += i
+print(<span class="hljs-string">&quot;The Sum of your list is &quot;</span>, m)
+<span class="hljs-comment"># %%</span>
+
+<span class="hljs-comment"># Make a unorderd list out of myList</span>
+myList2 = {i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> myList}
+print(<span class="hljs-string">&quot;Your list without duplicates is &quot;</span>, myList2)
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-comment"># Make a list with only the even inputs</span>
+myList3 = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> myList <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>]
+
+<span class="hljs-comment"># PRint myList3</span>
+print(myList3)
+</div></code></pre>
 
     </body>
     </html>

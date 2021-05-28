@@ -6,30 +6,32 @@ Learn as much as possible about basic python
 
 TABLE OF CONTENTS
 
-- [1. Introduction](#1-introduction)
-- [2. Body](#2-body)
-  - [2.1. Basic Information](#21-basic-information)
-    - [2.1.1. Building and Compiling](#211-building-and-compiling)
-      - [2.1.1.1. Command Line Python Interpreter](#2111-command-line-python-interpreter)
-      - [2.1.1.2. .py Files](#2112-py-files)
-      - [2.1.1.3. Advanced Interpreter](#2113-advanced-interpreter)
-  - [2.2. Syntax](#22-syntax)
-    - [2.2.1. White Space](#221-white-space)
-  - [2.3. Variables](#23-variables)
-    - [2.3.1. Built in Scalar Types](#231-built-in-scalar-types)
-    - [2.3.2. Data Structures](#232-data-structures)
-      - [2.3.2.1. Examples](#2321-examples)
-  - [2.4. Math](#24-math)
-  - [2.5. Logic and Loops](#25-logic-and-loops)
-    - [2.5.1. Conditional Statments](#251-conditional-statments)
-    - [2.5.2. For loops](#252-for-loops)
-    - [2.5.3. While Loops](#253-while-loops)
-  - [2.6. Input and Output](#26-input-and-output)
-    - [2.6.1. Screen](#261-screen)
-    - [2.6.2. Files](#262-files)
-  - [2.7. Functions](#27-functions)
-  - [2.8. Imports](#28-imports)
-- [3. Code Project](#3-code-project)
+* [1. Introduction](#1-introduction)
+* [2. Body](#2-body)
+  * [2.1. Basic Information](#21-basic-information)
+    * [2.1.1. Building and Compiling](#211-building-and-compiling)
+      * [2.1.1.1. Command Line Python Interpreter](#2111-command-line-python-interpreter)
+      * [2.1.1.2. .py Files](#2112-py-files)
+      * [2.1.1.3. Advanced Interpreter](#2113-advanced-interpreter)
+  * [2.2. Syntax](#22-syntax)
+    * [2.2.1. White Space](#221-white-space)
+  * [2.3. Variables](#23-variables)
+    * [2.3.1. Built in Scalar Types](#231-built-in-scalar-types)
+    * [2.3.2. Data Structures](#232-data-structures)
+      * [2.3.2.1. Examples](#2321-examples)
+  * [2.4. Math](#24-math)
+  * [2.5. Logic and Loops](#25-logic-and-loops)
+    * [2.5.1. Conditional Statments](#251-conditional-statments)
+    * [2.5.2. For loops](#252-for-loops)
+    * [2.5.3. While Loops](#253-while-loops)
+  * [2.6. Input and Output](#26-input-and-output)
+    * [2.6.1. Screen](#261-screen)
+    * [2.6.2. Files](#262-files)
+  * [2.7. Functions](#27-functions)
+  * [2.8. Imports](#28-imports)
+* [3. Code Project](#3-code-project)
+  * [3.1. Sameple output](#31-sameple-output)
+  * [3.2. Code](#32-code)
 
 # 2. Body
 
@@ -471,3 +473,99 @@ A warning to those who are just installing python for the first time. Make sure 
 There is also a way to import using the _from_ keyword. This allows you to import specific componesnts of a modules of simply do "from \<package\> import \*" to load all compoents of a modules.
 
 # 3. Code Project
+
+## 3.1. Sameple output
+
+```
+EGR491 Project 1: Paul A. Pace
+This project is designed to display various simple attributes of python.
+Please input either a comma separated list OR a file path.1,3;5,2,9
+Reading List now!!!
+1,3;5,2,9
+INVALID VALUE:  3;5
+The Sum of your list is  12
+Your list without duplicates is  {1, 2, 9}
+[2]
+```
+
+## 3.2. Code
+
+```python
+# To add a new cell, type '# %%'
+# To add a new markdown cell, type '# %% [markdown]'
+# %%
+# Function to check for a file
+# returns TRUE if there is a file, else returns false
+def check4File(filePath):
+    import os.path
+    return os.path.isfile(filePath)
+
+
+
+# %%
+# reads a file and loads it into a list, all new lines are treated as the default separator
+def readFile(path):
+    f = open(path, "r")
+    output = ""
+    for l in f:
+        output += ','
+        output += str(l.strip())
+    output = output[1:]
+    return output
+
+
+# %%
+# Function that reads the users input and elminates all non recoverable values
+def loadLst(strLst):
+    lst = []
+    for i in str(strLst).split(','):
+        try:
+            lst.append(int(i))
+        except:
+            print("INVALID VALUE: ", i)
+
+    return lst
+
+
+
+
+# %%
+# Opening Title
+print("EGR491 Project 1: Paul A. Pace")
+print("This project is designed to display various simple attributes of python.")
+userData = input("Please input either a comma separated list OR a file path.")
+
+
+# %%
+# Check for if userData is a file else read the list
+if check4File(userData):
+    print("Reading From your file")
+    userData = readFile(userData)
+else:
+    print("Reading List now!!!")
+
+
+# Print out userData
+print(userData)
+
+# %%
+# Make your list from the userData and check for its sum
+myList = loadLst(userData)
+
+m = 0
+for i in myList:
+    m += i
+print("The Sum of your list is ", m)
+# %%
+
+# Make a unorderd list out of myList
+myList2 = {i for i in myList}
+print("Your list without duplicates is ", myList2)
+
+# %%
+# Make a list with only the even inputs
+myList3 = [i for i in myList if i % 2 == 0]
+
+# PRint myList3
+print(myList3)
+```
