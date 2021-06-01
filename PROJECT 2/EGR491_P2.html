@@ -40,7 +40,7 @@
 </tr>
 <tr>
 <td style="text-align:right">Manipulation/Aggregation</td>
-<td style="text-align:left">Code Project</td>
+<td style="text-align:left">Summary w/ Code</td>
 </tr>
 <tr>
 <td style="text-align:right">Sorting Methods</td>
@@ -48,7 +48,19 @@
 </tr>
 <tr>
 <td style="text-align:right">Structured Arrays</td>
-<td style="text-align:left">TODO</td>
+<td style="text-align:left">Summary</td>
+</tr>
+<tr>
+<td style="text-align:right">Logical uFuncs</td>
+<td style="text-align:left">Summary w/code</td>
+</tr>
+<tr>
+<td style="text-align:right">Advanced Indexing</td>
+<td style="text-align:left">Code</td>
+</tr>
+<tr>
+<td style="text-align:right">Graphing w/matplotlib</td>
+<td style="text-align:left">Code</td>
 </tr>
 </tbody>
 </table>
@@ -58,16 +70,325 @@
 <li><a href="#2-table-of-content">2. Table of Content</a></li>
 <li><a href="#3-background">3. Background</a>
 <ul>
-<li><a href="#31-data-types-in-python">3.1. Data Types in Python</a></li>
-<li><a href="#32-sorting-methods">3.2. Sorting Methods</a></li>
+<li><a href="#31-data-types-in-python">3.1. Data Types in Python</a>
+<ul>
+<li><a href="#311-python-arrays-using-numpy">3.1.1. Python Arrays using Numpy</a>
+<ul>
+<li><a href="#3111-additional-features-of-numpy-arrays">3.1.1.1. Additional Features of Numpy arrays</a></li>
 </ul>
 </li>
-<li><a href="#4-code">4. Code</a></li>
+<li><a href="#312-structured-arrays-in-python">3.1.2. Structured Arrays in Python</a></li>
+</ul>
+</li>
+<li><a href="#32-sorting-methods">3.2. Sorting Methods</a>
+<ul>
+<li><a href="#321-paritioning">3.2.1. Paritioning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-boardcasting-aggregations-and-universal-functions">4. Boardcasting, Aggregations and Universal Functions</a>
+<ul>
+<li><a href="#41-broadcasting">4.1. Broadcasting</a>
+<ul>
+<li><a href="#411-logical-boardcasting">4.1.1. Logical Boardcasting</a>
+<ul>
+<li><a href="#4111-masks">4.1.1.1. Masks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#42-aggregations">4.2. Aggregations</a></li>
+</ul>
+</li>
+<li><a href="#5-code">5. Code</a></li>
 </ul>
 <h2 id="3-background">3. Background</h2>
 <h3 id="31-data-types-in-python">3.1. Data Types in Python</h3>
+<p>Python uses dynamic typing which means that a variable does not require a declaration of a variables type is not required.</p>
+<p>Compare these two code segments</p>
+<ul>
+<li>JAVA
+<ul>
+<li>
+<pre><code class="language-Java"><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">1</span>
+String y = <span class="hljs-string">&quot;Hello World&quot;</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>python
+<ul>
+<li>
+<pre><code class="language-python"><div>x = <span class="hljs-number">1</span>
+x = <span class="hljs-string">&quot;Hello World&quot;</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>You may have also noticed that variables in python can change the type they are. This workes because variables in python are pointers to C objects. This also means that python variables tend to have a larger overhead as each object must include its type, memeory address and size.</p>
+<h4 id="311-python-arrays-using-numpy">3.1.1. Python Arrays using Numpy</h4>
+<p>Becuase of this dynamic typing python lists can become massive and cumbersom. Thus the numpy module adds the ability to design single type arrays.</p>
+<p>Below is an example of how to use numpy arrays.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np  <span class="hljs-comment"># Import Numpy and give it a shorthand</span>
+
+arr1 = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">33</span>])              <span class="hljs-comment"># Implicitly Typed integer array</span>
+arr2 = np.array([<span class="hljs-number">1.0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">33</span>])             <span class="hljs-comment"># Implicitly Typed float array</span>
+arr3 = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">33</span>], dtype=<span class="hljs-string">&#x27;float&#x27;</span>) <span class="hljs-comment"># Explicitly Typed float array</span>
+print(arr1)
+print(arr2)
+print(arr3)
+
+<span class="hljs-comment">## OUTPUT</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np  <span class="hljs-comment"># Import Numpy and give it a shorthand</span>
+
+arr1 = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">33</span>])              <span class="hljs-comment"># Implicitly Typed integer array</span>
+arr2 = np.array([<span class="hljs-number">1.0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">33</span>])             <span class="hljs-comment"># Implicitly Typed float array</span>
+arr3 = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">33</span>], dtype=<span class="hljs-string">&#x27;float&#x27;</span>) <span class="hljs-comment"># Explicitly Typed float array</span>
+print(arr1)
+print(arr2)
+print(arr3)
+
+<span class="hljs-comment">## OUTPUT</span>
+<span class="hljs-comment"># [ 1  5  7 33]</span>
+<span class="hljs-comment"># [ 1.  5.  7. 33.]</span>
+<span class="hljs-comment"># [ 1.  5.  7. 33.]</span>
+</div></code></pre>
+<p>A fearture that is personally peculiar to me is how numpy arrays handle nested lists. As seen in the code block below</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment">#Regular Array</span>
+arrPy = [range(i, i+<span class="hljs-number">5</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)]
+print(arrPy)
+
+<span class="hljs-comment"># Numpy Array</span>
+arrNp = np.array([range(i, i+<span class="hljs-number">5</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>)])
+print(arrNp)
+
+<span class="hljs-comment">##########</span>
+<span class="hljs-comment"># OUTPUT</span>
+<span class="hljs-comment"># [range(1, 6), range(2, 7), range(3, 8), range(4, 9)]</span>
+<span class="hljs-comment"># [[1 2 3 4 5]</span>
+<span class="hljs-comment">#  [2 3 4 5 6]</span>
+<span class="hljs-comment">#  [3 4 5 6 7]</span>
+<span class="hljs-comment">#  [4 5 6 7 8]]</span>
+<span class="hljs-comment">###########</span>
+</div></code></pre>
+<p>This make the creation of multidemsional array very simple but there is one word of warning. For a numpy multidemsionally array to be properly instantiated you must ensure that all rows are the same size unless you are using an array of objects.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+validArr   = np.array([range(i<span class="hljs-number">-2</span>,i+<span class="hljs-number">2</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>)])
+print(validArr)
+invalidArr = np.array([range(int(i/<span class="hljs-number">2</span>),i*<span class="hljs-number">2</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>)])
+<span class="hljs-comment">#ERROR ENCOUNTERED</span>
+<span class="hljs-comment">##################</span>
+<span class="hljs-comment"># OUTPUT</span>
+<span class="hljs-comment">#[[0 1 2 3]</span>
+<span class="hljs-comment"># [1 2 3 4]</span>
+<span class="hljs-comment"># [2 3 4 5]]</span>
+<span class="hljs-comment">#&lt;ipython-input-4-4eeb350620f9&gt;:4: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#x27;dtype=object&#x27; when creating the ndarray.</span>
+<span class="hljs-comment">#  invalidArr = np.array([range(int(i/2),i*2) for i in range(2,5)])</span>
+<span class="hljs-comment">##############################################################</span>
+</div></code></pre>
+<h5 id="3111-additional-features-of-numpy-arrays">3.1.1.1. Additional Features of Numpy arrays</h5>
+<p>Numpy also includes several utility functions when it comes to arrays. Some of these include.</p>
+<ul>
+<li>.zeros(&lt;Array Size&gt;, &lt;Array Type&gt;)
+<ul>
+<li>Creates an array of <em>Array Type</em> in <em>Array Size</em> filled with zeros</li>
+</ul>
+</li>
+<li>.ones(&lt;Array Size&gt;, &lt;Array Type&gt;)
+<ul>
+<li>Creates an Array of <em>Array Type</em> in <em>Array Size</em> filled with ones</li>
+</ul>
+</li>
+<li>.full(&lt;Array Size&gt;, &lt;Array Value&gt;)
+<ul>
+<li>Creates an Array of <em>Array Size</em> filled with <em>Array Value</em></li>
+</ul>
+</li>
+<li>.arrange(&lt;Start Value&gt;, &lt;End Value&gt;, &lt;Step&gt;)
+<ul>
+<li>Creates an array from <em>Start Value</em> to <em>End Value</em> at <em>Step</em> increments</li>
+</ul>
+</li>
+<li>.linspace(&lt;Start Value&gt;, &lt;End Value&gt;, &lt;Number of Values&gt;)
+<ul>
+<li>Makes an array of <em>Number of Values</em> between <em>Start Value</em> and <em>End Value</em></li>
+</ul>
+</li>
+<li>.eye(&lt;Matrix Size&gt;)
+<ul>
+<li>Creates the Identity matrix for a square matrix of <em>Matrix Size</em></li>
+</ul>
+</li>
+</ul>
+<p>Some of these functions can make a Multidemtional array or a normal array. These are .full, .ones, .zeros. This works if you replace <em>Array Size</em> with a tuple of your multidemtional arrays diemnsions, such as (3, 4) for a 3x4 matrix.</p>
+<p>In addtion to auto filling an array these function also support the <em>dtype</em> value. These include <code>bool_</code>,<code>int_</code>,<code>complex_</code>,<code>float</code> and <code>uint</code>. These each reprsent their C equvalent and the <code>int</code>, <code>float</code> and <code>complex</code> types also support bit values allowing your to limit the space used by your arrays.</p>
+<h4 id="312-structured-arrays-in-python">3.1.2. Structured Arrays in Python</h4>
+<p>On occasion one will need to store related data points that are related, but are not the same data type. Although numpy arrays by deault only have one data type there is a possiblity to design a structured array by manuplated the dtype value in the numpy array constructor. Below is an example.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+dt = np.dtype({<span class="hljs-string">&#x27;names&#x27;</span>:(<span class="hljs-string">&#x27;uName&#x27;</span>, <span class="hljs-string">&#x27;uId&#x27;</span>, <span class="hljs-string">&#x27;uEmail&#x27;</span>),
+          <span class="hljs-string">&#x27;formats&#x27;</span>:(<span class="hljs-string">&#x27;U10&#x27;</span>, <span class="hljs-string">&#x27;i4&#x27;</span>, <span class="hljs-string">&#x27;U20&#x27;</span>)})
+userData = np.zeros(<span class="hljs-number">3</span>, dt)
+<span class="hljs-comment">#Creates an Structured Array with terms &#x27;name&#x27;, &#x27;id&#x27;, and email which are a 16 charaters string, 32 bit int and 32 character string respectivly.</span>
+userData[<span class="hljs-string">&#x27;uName&#x27;</span>] = [<span class="hljs-string">&#x27;Negative&#x27;</span>,<span class="hljs-string">&#x27;Moon&#x27;</span>,<span class="hljs-string">&#x27;Blue&#x27;</span>]
+userData[<span class="hljs-string">&#x27;uId&#x27;</span>] =   [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+userData[<span class="hljs-string">&#x27;uEmail&#x27;</span>] = [<span class="hljs-string">&#x27;Negative@gmail.com&#x27;</span>,<span class="hljs-string">&#x27;Moon@gmail.com&#x27;</span>,<span class="hljs-string">&#x27;Blue@gmail.com&#x27;</span>]
+<span class="hljs-comment">#FILLS THE ARRAY</span>
+
+print(userData[<span class="hljs-string">&#x27;uName&#x27;</span>]) <span class="hljs-comment">#Print all usernames</span>
+print(userData[<span class="hljs-number">0</span>]) <span class="hljs-comment">#Print the first entry</span>
+print(userData[<span class="hljs-number">-1</span>][<span class="hljs-string">&#x27;uId&#x27;</span>]) <span class="hljs-comment"># Print the Id of the last element</span>
+
+<span class="hljs-comment">######</span>
+<span class="hljs-comment">#OUTPUT</span>
+<span class="hljs-comment">#[&#x27;Negative&#x27; &#x27;Moon&#x27; &#x27;Blue&#x27;]</span>
+<span class="hljs-comment">#(&#x27;Negative&#x27;, 1, &#x27;Negative@gmail.com&#x27;)</span>
+<span class="hljs-comment">#3</span>
+<span class="hljs-comment">#######</span>
+</div></code></pre>
 <h3 id="32-sorting-methods">3.2. Sorting Methods</h3>
-<h2 id="4-code">4. Code</h2>
+<p>When working with arrays one must reqularly use sorting methods as to both organize and search for data. Although you may wish to emplement these methods yourself numpy has insluded quicksort into its module. This function can be accessed by using <code>numpy.sort(myNpArray)</code> which will return a sorted version of the numpy array.</p>
+<p>This function can also sort an array along each axis of the multidiemnsional array. This can be acomplised by adding the <code>axis</code> parameter to the sort method. You will then assign it to the axis you wish to use starting at 0. One example of this is below.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+arr1 = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>, (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>))
+print(arr1)
+
+print(<span class="hljs-string">&#x27;-----------------------------------------&#x27;</span>)
+<span class="hljs-comment"># Sort along the colums</span>
+print(np.sort(arr1, axis=<span class="hljs-number">0</span>))
+print(<span class="hljs-string">&#x27;-----------------------------------------&#x27;</span>)
+<span class="hljs-comment"># Sort Along the Rows</span>
+print(np.sort(arr1, axis=<span class="hljs-number">1</span>))
+print(<span class="hljs-string">&#x27;-----------------------------------------&#x27;</span>)
+<span class="hljs-comment"># Sort whole Array by rows then columns</span>
+print(np.sort(np.sort(arr1), axis=<span class="hljs-number">0</span>))
+print(<span class="hljs-string">&#x27;-----------------------------------------&#x27;</span>)
+<span class="hljs-comment"># Sort whole Array by Columns then rows</span>
+print(np.sort(np.sort(arr1, axis=<span class="hljs-number">0</span>)))
+
+<span class="hljs-comment">#################</span>
+<span class="hljs-comment">#OUTPUT</span>
+<span class="hljs-comment">#[[32 76  1]</span>
+<span class="hljs-comment"># [95 92 76]</span>
+<span class="hljs-comment"># [30 75 63]]</span>
+<span class="hljs-comment">#-----------------------------------------</span>
+<span class="hljs-comment">#[[30 75  1]</span>
+<span class="hljs-comment"># [32 76 63]</span>
+<span class="hljs-comment"># [95 92 76]]</span>
+<span class="hljs-comment">#-----------------------------------------</span>
+<span class="hljs-comment">#[[ 1 32 76]</span>
+<span class="hljs-comment"># [76 92 95]</span>
+<span class="hljs-comment"># [30 63 75]]</span>
+<span class="hljs-comment">#-----------------------------------------</span>
+<span class="hljs-comment">#[[ 1 32 75]</span>
+<span class="hljs-comment"># [30 63 76]</span>
+<span class="hljs-comment"># [76 92 95]]</span>
+<span class="hljs-comment">#-----------------------------------------</span>
+<span class="hljs-comment">#[[ 1 30 75]</span>
+<span class="hljs-comment"># [32 63 76]</span>
+<span class="hljs-comment"># [76 92 95]]</span>
+</div></code></pre>
+<p>In addtion to sorting an array numpy included the <code>.argsort()</code> funciton. This fuynction returns an array filled with the indecies of the array in sorted order. For example</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+arr1 = np.array([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>])
+print(np.argsort(arr1))
+<span class="hljs-comment">#######</span>
+<span class="hljs-comment">#OUTPUT</span>
+<span class="hljs-comment">#[2,1,0]</span>
+</div></code></pre>
+<h4 id="321-paritioning">3.2.1. Paritioning</h4>
+<p>In adition to sorting numpy includes a method to search for the smallest values in an array. This method is called <code>numpy.partition(&lt;array&gt;, &lt;number of values&gt;)</code>. This function works identically to sort and the function <code>numpy.argpartition(&lt;array&gt;, &lt;number of values&gt;)</code> works similarly to <code>numpy.argsort()</code>.</p>
+<h2 id="4-boardcasting-aggregations-and-universal-functions">4. Boardcasting, Aggregations and Universal Functions</h2>
+<p>Although loops are useful when operation on arrays, pythons loops tend to slow. Therefore numpy added the ability to do large operations over an array. These methods include Univeral Function, Broadcasting and Aggregations. Some of these are rather simple such as Univeral Functions which are just the python and numpy equvalent functions. Others are more complex and are explored below.</p>
+<h3 id="41-broadcasting">4.1. Broadcasting</h3>
+<p>The common uFuncs are actually a specal case of Broadcasting in which you have one array and one single element. With broadcaseing you can manipulate one array of shape (n,n) and another array of shape (k,k) and these values do not neccesarily have to be the same. Forinstance</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+arr1 = np.arange(<span class="hljs-number">3</span>)
+arr2 = np.ones(<span class="hljs-number">3</span>))[:, np.newaxis] <span class="hljs-comment"># Make a columns of ones</span>
+print(arr1+ arr2)
+<span class="hljs-comment">####</span>
+<span class="hljs-comment">#OUTPUT</span>
+<span class="hljs-comment">#[0 1 2]</span>
+<span class="hljs-comment"># [[1.]</span>
+<span class="hljs-comment"># [1.]</span>
+<span class="hljs-comment"># [1.]]</span>
+<span class="hljs-comment">#[[1. 2. 3.]</span>
+<span class="hljs-comment"># [1. 2. 3.]</span>
+<span class="hljs-comment"># [1. 2. 3.]]</span>
+</div></code></pre>
+<p>Although arrays are padded or streched when there is a diffence of dimensions at least one of the dimensions must match or not be used. This simply means that if you have two three dimensional array with compltly diffent values board casing will not work.</p>
+<h4 id="411-logical-boardcasting">4.1.1. Logical Boardcasting</h4>
+<p>Boardcasting can also work with logic functions and will return an array of boolans rather than an an array of numbers. This comes in handy when seeking to count values as python treats all non zero values as True and only Zero as false. There fore when coupled with <code>np.count_nonzero()</code> booleans expressions become rather powerful. There is also the equvaluent to an <code>AND</code> and <code>OR</code> statment for arrays with Boolean arrays call <code>.all()</code> and <code>.any()</code> which do just as their name suggets.</p>
+<h5 id="4111-masks">4.1.1.1. Masks</h5>
+<p>Boolan arrays can also be used masks which return a smaller array based on some logical expression. This technique will be evalued in the following example.</p>
+<h3 id="42-aggregations">4.2. Aggregations</h3>
+<p>Aggregation is a specal addition to the numpy uFuncs on an array. Some of these include <code>.reduce()</code> which will recusivly conduct your operation on the whole array and return a single value (such as finding the sum of the array), <code>.accumulate()</code> which conducts the operations through the array and returns an array with each step (like a running total on an array). Although <code>.reduce()</code> and <code>.accumlate()</code> are usfult numpy arrays also have a suite of statistical functions that are incredibly usfult and productive. Below is a example of many of the numpy array aggregations.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+arr1 = np.random.random((<span class="hljs-number">5</span>,<span class="hljs-number">5</span>))
+arr2 = np.random.random(<span class="hljs-number">5</span>)
+
+print(arr1,<span class="hljs-string">&quot;\n&quot;</span>,arr2)
+<span class="hljs-comment">#SUM</span>
+print(np.add.reduce(arr1))
+print(np.add.accumulate(arr2))
+print(arr1.sum(axis=<span class="hljs-number">1</span>))
+print(arr1.sum())
+arr2 += <span class="hljs-number">1</span> <span class="hljs-comment"># uFun to add 1 to all values of arr2 and reassign</span>
+<span class="hljs-comment">#POWER</span>
+print(np.power.accumulate(arr2))
+<span class="hljs-comment"># Stand Deviation and Varience</span>
+print(arr1.std())
+print(arr2.var())
+<span class="hljs-comment"># Index of max/min</span>
+print(arr1.argmax()) <span class="hljs-comment"># Is to find the mas of each sub array as this will print rowcolumne with no space</span>
+print(arr1.argmin())
+<span class="hljs-comment">#####</span>
+<span class="hljs-comment"># Sample OUTPUT</span>
+<span class="hljs-comment">#]</span>
+
+
+
+
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+arr1 = np.random.random((<span class="hljs-number">5</span>,<span class="hljs-number">5</span>))
+arr2 = np.random.random(<span class="hljs-number">5</span>)
+
+print(arr1,<span class="hljs-string">&quot;\n&quot;</span>,arr2)
+<span class="hljs-comment">#SUM</span>
+print(np.add.reduce(arr1))
+print(np.add.accumulate(arr2))
+print(arr1.sum(axis=<span class="hljs-number">1</span>))
+print(arr1.sum())
+arr2 += <span class="hljs-number">1</span> <span class="hljs-comment"># uFun to add 1 to all values of arr2 and reassign</span>
+<span class="hljs-comment">#POWER</span>
+print(np.power.accumulate(arr2))
+<span class="hljs-comment"># Stand Deviation and Varience</span>
+print(arr1.std())
+print(arr2.var())
+<span class="hljs-comment"># Index of max/min</span>
+print(arr1.argmax()) <span class="hljs-comment"># Is to find the mas of each sub array as this will print rowcolumne with no space</span>
+print(arr1.argmin())
+<span class="hljs-comment">#[[0.67336848 0.17178476 0.94030908 0.15257246 0.74257853]</span>
+<span class="hljs-comment"># [0.20917456 0.91132532 0.00736586 0.58191279 0.16805195]</span>
+<span class="hljs-comment"># [0.27578636 0.41687174 0.61413864 0.53289707 0.02307563]</span>
+<span class="hljs-comment"># [0.52531865 0.19114826 0.91523491 0.25310389 0.538879  ]</span>
+<span class="hljs-comment"># [0.25670329 0.6615298  0.52004819 0.87967821 0.60668515]]</span>
+<span class="hljs-comment"># [0.02603621 0.2391786  0.4240816  0.73169064 0.2876162 ]</span>
+<span class="hljs-comment">#[1.94035134 2.35265989 2.99709668 2.40016442 2.07927027]</span>
+<span class="hljs-comment">#[0.02603621 0.26521481 0.68929641 1.42098705 1.70860325]</span>
+<span class="hljs-comment">#[2.68061332 1.87783048 1.86276944 2.42368471 2.92464464]</span>
+<span class="hljs-comment">#11.769542595298107</span>
+<span class="hljs-comment">#[1.02603621 1.03236332 1.04640234 1.08171302 1.1064282 ]</span>
+<span class="hljs-comment">#0.2810060427591307</span>
+<span class="hljs-comment">#0.05439174997540538</span>
+<span class="hljs-comment">#2</span>
+<span class="hljs-comment">#7</span>
+</div></code></pre>
+<h2 id="5-code">5. Code</h2>
 
     </body>
     </html>
