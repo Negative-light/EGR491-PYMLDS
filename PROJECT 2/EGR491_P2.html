@@ -101,7 +101,16 @@
 <li><a href="#42-aggregations">4.2. Aggregations</a></li>
 </ul>
 </li>
-<li><a href="#5-code">5. Code</a></li>
+<li><a href="#5-code">5. Code</a>
+<ul>
+<li><a href="#51-sameple-run">5.1. Sameple Run</a>
+<ul>
+<li><a href="#511-graph-output">5.1.1. Graph Output</a></li>
+</ul>
+</li>
+<li><a href="#52-code">5.2. Code</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="3-background">3. Background</h2>
 <h3 id="31-data-types-in-python">3.1. Data Types in Python</h3>
@@ -389,6 +398,176 @@ print(arr1.argmin())
 <span class="hljs-comment">#7</span>
 </div></code></pre>
 <h2 id="5-code">5. Code</h2>
+<h3 id="51-sameple-run">5.1. Sameple Run</h3>
+<pre><code><code><div>This Project was produced by: Paul A. Pace
+FOR: EGR491 Project 2 Summer 21 Mercer University
+How many rows for your array5
+How many columns for your array15
+This is your array:
+[[1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+ [1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]]
+applying random value
+Evaluating your array
+[[60. 57. 73. 72. 78. 94. 40. 20. 72. 78. 62. 46. 26. 97. 93.]
+ [ 7. 50. 35. 63. 42. 92. 77. 40. 74. 91.  9.  4.  8. 60. 35.]
+ [70. 22. 44. 45. 98.  2.  7. 15.  8. 23. 90. 46. 56. 48. 39.]
+ [25. 89. 77. 90. 86.  5. 82. 40. 22. 38. 94. 49. 27. 25. 51.]
+ [73. 53. 48. 32.  1.  8. 12. 93. 22. 44. 96. 73. 55. 43. 80.]]
+These values are over 50
+[[ True  True  True  True  True  True False False  True  True  True False
+  False  True  True]
+ [False False False  True False  True  True False  True  True False False
+  False  True False]
+ [ True False False False  True False False False False False  True False
+   True False False]
+ [False  True  True  True  True False  True False False False  True False
+  False False  True]
+ [ True  True False False False False False  True False False  True  True
+   True False  True]]
+The average value above 50 is  77.11428571428571
+It looks a little sloppy lets fix that:
+The sum of each column is:
+[ 32.  70.  93. 117. 173. 199. 225. 255. 271. 311. 344. 367. 409. 458.
+ 477.]
+The Average Column Size is:  760.2
+Lets do some more:
+98.0 :MAX
+1.0 :MIN
+-------------------
+now let us do some boardcasting
+15
+(15,)
+[[-20. -25. -38. -43. -53. -55. -56. -65. -64. -64. -68. -67. -81. -81.
+  -83.]
+ [ -4.  -6.  -6.  -6. -31. -30. -34. -35. -42. -51. -53. -63. -65. -78.
+  -78.]
+ [ -2.  -6.  -6. -12. -18. -18. -33. -37. -37. -37. -38. -45. -58. -77.
+  -84.]
+ [ -5. -21. -23. -22. -23. -33. -34. -42. -43. -68. -72. -75. -77. -77.
+  -80.]
+ [ -1.  -7. -10. -19. -28. -38. -38. -41. -45. -46. -63. -62. -68. -80.
+  -82.]]
+[[ 40.  51.  78.  89. 110. 115. 118. 137. 136. 137. 146. 145. 174. 175.
+  180.]
+ [  8.  13.  14.  15.  66.  65.  74.  77.  92. 111. 116. 137. 142. 169.
+  170.]
+ [  4.  13.  14.  27.  40.  41.  72.  81.  82.  83.  86. 101. 128. 167.
+  182.]
+ [ 10.  43.  48.  47.  50.  71.  74.  91.  94. 145. 154. 161. 166. 167.
+  174.]
+ [  2.  15.  22.  41.  60.  81.  82.  89.  98. 101. 136. 135. 148. 173.
+  178.]]
+Some Advaced Indexing
+[0 2 1 1 1 1 1 0 0 1 0 3 0 2 2]
+ [10  4  7 13  1 12  8  4  5  5 11  3 10 11 11]
+The values at these locations are:
+[78. 22. 42. 91.  7. 77. 50. 57. 60. 35. 78. 25. 78. 56. 56.]
+And just for kicks lets make a graph:
+We will print arr3 vs arr4
+</div></code></code></pre>
+<h4 id="511-graph-output">5.1.1. Graph Output</h4>
+<p><img src="file:///c:\Users\night\repo\school\EGR491-PYMLDS\PROJECT 2\Screenshot%202021-06-01%20191207.png" alt="GRAPH"></p>
+<h3 id="52-code">5.2. Code</h3>
+<pre><code class="language-python"><div><span class="hljs-comment"># To add a new cell, type &#x27;# %%&#x27;</span>
+<span class="hljs-comment"># To add a new markdown cell, type &#x27;# %% [markdown]&#x27;</span>
+<span class="hljs-comment"># %% [markdown]</span>
+<span class="hljs-comment"># # Project Goal</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Show multiple methods and function on an set of arrays including data analysis.</span>
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">welcome</span>():</span>
+    print(<span class="hljs-string">&quot;This Project was produced by: Paul A. Pace&quot;</span>)
+    print(<span class="hljs-string">&quot;FOR: EGR491 Project 2 Summer 21 Mercer University&quot;</span>)
+
+
+<span class="hljs-comment"># %%</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">promt4array</span>():</span>
+    num1 = input(<span class="hljs-string">&quot;How many rows for your array&quot;</span>)
+    num2 = input(<span class="hljs-string">&quot;How many columns for your array&quot;</span>)
+    <span class="hljs-keyword">return</span> (int(num1),int(num2))
+
+
+<span class="hljs-comment"># %%</span>
+welcome()
+arr1 = np.ones(promt4array())
+
+
+<span class="hljs-comment"># %%</span>
+print(<span class="hljs-string">&quot;This is your array: &quot;</span>)
+print(arr1)
+print(<span class="hljs-string">&quot;applying random value&quot;</span>)
+arr1 += np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>, arr1.shape)
+
+
+<span class="hljs-comment"># %%</span>
+print(<span class="hljs-string">&quot;Evaluating your array&quot;</span>)
+print(arr1)
+print(<span class="hljs-string">&quot;These values are over 50&quot;</span>)
+mskArr = arr1 &gt; <span class="hljs-number">50</span>
+print(mskArr)
+
+print(<span class="hljs-string">&quot;The average value above 50 is &quot;</span>, arr1[mskArr].mean())
+
+print(<span class="hljs-string">&quot;It looks a little sloppy lets fix that: &quot;</span>)
+arr1 = np.sort(arr1, axis=<span class="hljs-number">1</span>)
+
+print(<span class="hljs-string">&quot;The sum of each column is: &quot;</span>)
+print(arr1.sum(axis=<span class="hljs-number">0</span>))
+print(<span class="hljs-string">&quot;The Average Column Size is: &quot;</span>, end=<span class="hljs-string">&#x27; &#x27;</span>)
+print(arr1.sum(axis=<span class="hljs-number">1</span>).mean())
+
+
+
+<span class="hljs-comment"># %%</span>
+print(<span class="hljs-string">&quot;Lets do some more: &quot;</span>)
+print(arr1.max(), <span class="hljs-string">&quot;:MAX&quot;</span>)
+print(arr1.min(), <span class="hljs-string">&quot;:MIN&quot;</span>)
+
+
+<span class="hljs-comment"># %%</span>
+print(<span class="hljs-string">&quot;-------------------&quot;</span>)
+print(<span class="hljs-string">&quot;now let us do some boardcasting&quot;</span>)
+x = arr1.shape[<span class="hljs-number">1</span>]
+print(x)
+arrTmp = np.array(np.arange(x))
+print(arrTmp.shape)
+arr2 = arrTmp - arr1
+print(arr2)
+print(arr1 - arr2) <span class="hljs-comment"># This will print your column numbers</span>
+
+
+<span class="hljs-comment"># %%</span>
+print(<span class="hljs-string">&quot;Some Advaced Indexing&quot;</span>)
+<span class="hljs-comment"># We must get the smallest of either rows of columns</span>
+x = arr1.shape[<span class="hljs-number">0</span>]
+<span class="hljs-keyword">if</span> x &lt; arr1.shape[<span class="hljs-number">1</span>]:
+     x = arr1.shape[<span class="hljs-number">1</span>]
+
+arr3 = np.random.randint(<span class="hljs-number">0</span>, arr1.shape[<span class="hljs-number">0</span>]<span class="hljs-number">-1</span>, x) <span class="hljs-comment">#Generate your Rows</span>
+arr4 = np.random.randint(<span class="hljs-number">0</span>, arr1.shape[<span class="hljs-number">1</span>]<span class="hljs-number">-1</span>, x) <span class="hljs-comment"># Generate your columns</span>
+arr3 += np.zeros(arr4.shape, dtype=<span class="hljs-string">&#x27;int32&#x27;</span>) <span class="hljs-comment"># You must set the type to int32 and have the same number of values</span>
+arr4 += np.zeros(arr3.shape, dtype=<span class="hljs-string">&#x27;int32&#x27;</span>)
+print(arr3, <span class="hljs-string">&quot;\n&quot;</span>, arr4)
+print(<span class="hljs-string">&quot;The values at these locations are: &quot;</span>)
+print(arr1[arr3,arr4])
+
+
+<span class="hljs-comment"># %%</span>
+print(<span class="hljs-string">&quot;And just for kicks lets make a graph:&quot;</span>)
+print(<span class="hljs-string">&quot;We will print arr3 vs arr4&quot;</span>)
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+plt.scatter(arr3, arr4)
+plt.title(<span class="hljs-string">&quot;These are the values we picked&quot;</span>)
+plt.show()
+</div></code></pre>
 
     </body>
     </html>
