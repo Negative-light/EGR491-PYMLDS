@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PROJECT 3 EGR 491 Python Pandas</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body">
+        <h1 id="project-3-egr-491-python-pandas">PROJECT 3 EGR 491 Python Pandas</h1>
+<p>Althoug NumPy provided wonderful tools for data manipulation there is a better module for larger datasets. This module is known as pandas. The panda import does not provided you with an endangered spieces of bear but provied three data sturfictures which will be explored later.</p>
+<h2 id="1-table-of-contents">1. Table of Contents</h2>
+<ul>
+<li><a href="#1-table-of-contents">1. Table of Contents</a></li>
+<li><a href="#2-table-of-display">2. Table of Display</a></li>
+<li><a href="#3-background">3. Background</a>
+<ul>
+<li><a href="#31-dataobjects">3.1. DataObjects</a>
+<ul>
+<li><a href="#311-series">3.1.1. Series</a></li>
+<li><a href="#312-dataframe">3.1.2. DataFrame</a></li>
+</ul>
+</li>
+<li><a href="#32-data-manipulation">3.2. Data Manipulation</a>
+<ul>
+<li><a href="#321-ufuncs-and-broadcasting">3.2.1. uFuncs and Broadcasting</a></li>
+<li><a href="#322-missing-data">3.2.2. Missing Data</a></li>
+<li><a href="#323-advanced-dataframes">3.2.3. Advanced Dataframes</a>
+<ul>
+<li><a href="#3231-advanced-indexing">3.2.3.1. Advanced Indexing</a></li>
+<li><a href="#3232-changing-columns">3.2.3.2. Changing Columns</a></li>
+<li><a href="#3233-sorting">3.2.3.3. Sorting</a></li>
+<li><a href="#3234-fliping">3.2.3.4. Fliping</a></li>
+<li><a href="#3235-combining-tables">3.2.3.5. Combining Tables</a></li>
+</ul>
+</li>
+<li><a href="#324-querying-and-evaluating-dataframes">3.2.4. Querying and Evaluating DataFrames</a></li>
+<li><a href="#325-strings">3.2.5. Strings</a></li>
+</ul>
+</li>
+<li><a href="#33-files">3.3. Files</a></li>
+</ul>
+</li>
+<li><a href="#4-code">4. Code</a>
+<ul>
+<li><a href="#41-output">4.1. Output</a></li>
+<li><a href="#42-code">4.2. Code</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-table-of-display">2. Table of Display</h2>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Topic</th>
+<th style="text-align:left">Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Series</td>
+<td style="text-align:left">Summary w/ Code</td>
+</tr>
+<tr>
+<td style="text-align:right">DataFrame</td>
+<td style="text-align:left">Summary w/ Code</td>
+</tr>
+<tr>
+<td style="text-align:right">Index</td>
+<td style="text-align:left">Summary w/ Code</td>
+</tr>
+<tr>
+<td style="text-align:right">Indexing/Selection of Data</td>
+<td style="text-align:left">Summary</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-background">3. Background</h2>
+<p>The pandas module is a more complex addition to NumPy and reqiures that module to be installed and automatically comes installed with Jupyter Labs or can be installed by using &quot;<code>pip install pandas</code>&quot; in the command line.</p>
+<h3 id="31-dataobjects">3.1. DataObjects</h3>
+<p>Pandas is designed as a more advaced table interfacting system. To use a pandas object you will either use a Series or the much more powerful dataframe</p>
+<h4 id="311-series">3.1.1. Series</h4>
+<p>The simpliest of these data structures is the pandas series which is simply an array. The uniques attribute of a Panda Series is the ability to use unique indexes. As seen below.</p>
+<p><em>EXAMPLE</em></p>
+<hr>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+pand1 = pd.Series([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]) <span class="hljs-comment"># This is a normal array</span>
+pand2 = pd.Series([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>], index=[<span class="hljs-string">&#x27;one&#x27;</span>,<span class="hljs-string">&#x27;two&#x27;</span>,<span class="hljs-string">&#x27;three&#x27;</span>,<span class="hljs-string">&#x27;four&#x27;</span>,<span class="hljs-string">&#x27;five&#x27;</span>]) <span class="hljs-comment"># This is an array with special indexes</span>
+
+dic = {<span class="hljs-string">&#x27;one&#x27;</span>:<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;two&#x27;</span>:<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;three&#x27;</span>:<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;four&#x27;</span>:<span class="hljs-number">4</span>}
+pand3 = pd.Series(dic)
+
+print(pand1)
+print(pand2)
+print(pand3)
+<span class="hljs-comment">###</span>
+<span class="hljs-comment">#OUTPUT</span>
+<span class="hljs-comment">#0    1</span>
+<span class="hljs-comment">#1    2</span>
+<span class="hljs-comment">#2    3</span>
+<span class="hljs-comment">#3    4</span>
+<span class="hljs-comment">#4    5</span>
+<span class="hljs-comment">#dtype: int64</span>
+<span class="hljs-comment">#one      1</span>
+<span class="hljs-comment">#two      2</span>
+<span class="hljs-comment">#three    3</span>
+<span class="hljs-comment">#four     4</span>
+<span class="hljs-comment">#five     5</span>
+<span class="hljs-comment">#dtype: int64</span>
+<span class="hljs-comment">#one      1</span>
+<span class="hljs-comment">#two      2</span>
+<span class="hljs-comment">#three    3</span>
+<span class="hljs-comment">#four     4</span>
+<span class="hljs-comment">#dtype: int64</span>
+</div></code></pre>
+<hr>
+<h4 id="312-dataframe">3.1.2. DataFrame</h4>
+<p>The most popular and power data tool Pandas provides is the Dataframe. This object is a more complex version of the numpy structured array, but it is a bit more powerful.</p>
+<p>This is because each dimension of a dataframas array is a labeled array similar to how an Excel table works. Below is a simple example of how to make a dataframe.</p>
+<hr>
+<pre><code class="language-python"><div>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+employees = [<span class="hljs-string">&#x27;Paul&#x27;</span>, <span class="hljs-string">&#x27;Shelby&#x27;</span>, <span class="hljs-string">&#x27;Josh&#x27;</span>, <span class="hljs-string">&#x27;Phil&#x27;</span>, <span class="hljs-string">&#x27;Steve&#x27;</span>]
+pay = [<span class="hljs-number">25.00</span>, <span class="hljs-number">15.75</span>, <span class="hljs-number">13.24</span>, <span class="hljs-number">10.11</span>, <span class="hljs-number">15</span>]
+tenure = [<span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">13</span>, <span class="hljs-number">45</span>]
+
+employInfo = pd.DataFrame({<span class="hljs-string">&#x27;Employee&#x27;</span>:employees, <span class="hljs-string">&#x27;pay&#x27;</span>:pay, <span class="hljs-string">&#x27;Tenure&#x27;</span>:tenure})
+print(employInfo)
+<span class="hljs-comment">#	Employee	pay	Tenure</span>
+<span class="hljs-comment">#0	Paul	25.00	10</span>
+<span class="hljs-comment">#1	Shelby	15.75	5</span>
+<span class="hljs-comment">#2	Josh	13.24	7</span>
+<span class="hljs-comment">#3	Phil	10.11	13</span>
+<span class="hljs-comment">#4	Steve	15.00	45</span>
+</div></code></pre>
+<hr>
+<p>You can also access any column by calling out the column name such as <code>employInfo.pay</code> and you can even add columns that cosist of operations between multiple columns. Below is an exmaple</p>
+<hr>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+employees = [<span class="hljs-string">&#x27;Paul&#x27;</span>, <span class="hljs-string">&#x27;Shelby&#x27;</span>, <span class="hljs-string">&#x27;Josh&#x27;</span>, <span class="hljs-string">&#x27;Phil&#x27;</span>, <span class="hljs-string">&#x27;Steve&#x27;</span>]
+pay = [<span class="hljs-number">25.00</span>, <span class="hljs-number">15.75</span>, <span class="hljs-number">13.24</span>, <span class="hljs-number">10.11</span>, <span class="hljs-number">15</span>]
+tenure = [<span class="hljs-number">10</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">13</span>, <span class="hljs-number">45</span>]
+
+employInfo = pd.DataFrame({<span class="hljs-string">&#x27;Employee&#x27;</span>:employees, <span class="hljs-string">&#x27;Pay&#x27;</span>:pay, <span class="hljs-string">&#x27;Tenure&#x27;</span>:tenure})
+
+employInfo[<span class="hljs-string">&#x27;RPY&#x27;</span>] = (employInfo[<span class="hljs-string">&#x27;Pay&#x27;</span>]<span class="hljs-number">-7.25</span>)/employInfo[<span class="hljs-string">&#x27;Tenure&#x27;</span>]
+
+print(employInfo.T) <span class="hljs-comment"># This will print the transposed table</span>
+<span class="hljs-comment">#######################################################</span>
+<span class="hljs-comment">#              0       1         2      3         4</span>
+<span class="hljs-comment">#Employee   Paul  Shelby      Josh   Phil     Steve</span>
+<span class="hljs-comment">#Pay        25.0   15.75     13.24  10.11      15.0</span>
+<span class="hljs-comment">#Tenure       10       5         7     13        45</span>
+<span class="hljs-comment">#RPY       1.775     1.7  0.855714   0.22  0.172222</span>
+</div></code></pre>
+<hr>
+<p>There are three ways to access its data these are</p>
+<ul>
+<li>iloc: This uses numbers to index each column such as <code>employInfo.iloc[:2, :2]</code></li>
+<li>loc: This uses the Index Names the such as <code>employInfo.loc[]:&quot;Josh&quot;, :&quot;Pay&quot;]</code>.</li>
+<li>ix: Alows the use of both indexes and the column titles. <code>employInfo.ix[:'Josh', :2]</code></li>
+<li>Mask: These check each row agaisnts a boolan expression <code>employInfo[employInfo.Tenure &gt;= 10]</code></li>
+</ul>
+<h3 id="32-data-manipulation">3.2. Data Manipulation</h3>
+<h4 id="321-ufuncs-and-broadcasting">3.2.1. uFuncs and Broadcasting</h4>
+<p>Panda objects do support the same universal functions as a numpy array. These operations will keep the same row/column information that the series has. This also means that pandas will atempts to align all indexies as provided.</p>
+<p>To display this we will consider the following objects.</p>
+<hr>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd;
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np;
+
+myIndex = pd.Index([<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>])
+myIndex2 = pd.Index([<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>])
+ds1 = pd.Series(np.random.random(<span class="hljs-number">5</span>), index=myIndex)
+ds2 = pd.Series([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], index=myIndex2)
+ds3 = pd.Series([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>], index=myIndex)
+df = pd.DataFrame({<span class="hljs-string">&#x27;rand&#x27;</span>:ds1,<span class="hljs-string">&#x27;set&#x27;</span>:ds3}, index=myIndex)
+</div></code></pre>
+<hr>
+<p>If we were to print <code>ds1+100</code> we would get</p>
+<pre><code>a    100.163441
+b    100.578039
+c    100.096041
+d    100.963564
+e    100.549283
+dtype: float64
+</code></pre>
+<p>If we were to pritn <code>df+10</code> we would get</p>
+<pre><code>        rand  set
+a  10.163441   10
+b  10.578039   11
+c  10.096041   12
+d  10.963564   13
+e  10.549283   14
+</code></pre>
+<p>But something different happens when we add two series together. Consder adding ds1 and ds2. This will ouput.</p>
+<pre><code>a    1.163441
+b         NaN
+c    2.096041
+d    3.963564
+e         NaN
+dtype: float64
+</code></pre>
+<p>Notice that the indicies were added together properly, but for the indecies which ds2 did not have (b and e) the result becomes NaN, but this is just the default behavious. If you were to use ds1.add(ds2) you can set the output with the function parameter <code>fill_value</code>. If you were to use a <em>fill_value</em> of 0 your output would be</p>
+<pre><code>a    1.973342
+b    0.408203
+c    2.147969
+d    3.458576
+e    0.430023
+dtype: float64
+</code></pre>
+<h4 id="322-missing-data">3.2.2. Missing Data</h4>
+<p>When working on large datasets some functions on multiple DataFrames or Series will result in tables which will have NaN or null values. Therefore pandas proviedes a few functions to asasist in changing null values or to simply ignore them. These are:</p>
+<ul>
+<li>isnull(): Returns a mask the location of each null value as <strong>TRUE</strong></li>
+<li>notnull(): Returns a mask the location of each null value as <strong>FALSE</strong></li>
+<li>dropna(): Returns the Array with all Null values removed, in dataframs it drop both rows and columns unless specifiec by the <em>axis</em> prameter.</li>
+<li>fillna(): Fills the Null values with a specified value or and use <code>ffill</code> which pulls the previous value or <code>bfill</code> which pulls the next non null value. The <em>axis</em> parameter can be used on fillna as well.</li>
+</ul>
+<h4 id="323-advanced-dataframes">3.2.3. Advanced Dataframes</h4>
+<p>Dataframs can be manipulated in many ways and the pandas documentation includes a wonderful <a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">cheat sheet</a> for quick reference.</p>
+<h5 id="3231-advanced-indexing">3.2.3.1. Advanced Indexing</h5>
+<p>This feature applies both to the Series and Dataframe Object and can be used to add indecies. A simple way to do this is set you index object to a list of tuples such as</p>
+<hr>
+<pre><code class="language-python"><div>    <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+    dex = pd.MultiIndex.from_tuples([(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-number">0</span>),(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-number">1</span>),(<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-number">2</span>),(<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-number">2</span>),(<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-number">3</span>)], names=[<span class="hljs-string">&#x27;letter&#x27;</span>,<span class="hljs-string">&#x27;nummber&#x27;</span>])
+</div></code></pre>
+<hr>
+<p>Notice that there is a extra parameter <em>names</em> which will name each index like a column in the main part of the data.</p>
+<h5 id="3232-changing-columns">3.2.3.2. Changing Columns</h5>
+<p>Columns of a dataframe can be editing using <code>.rename(columns = &quot;old_name&quot;:&quot;new_name&quot;})</code>. Or columns can be delted using <code>.drop(&quot;column name&quot;)</code>, this function can also use a list of column names for quickly droping multiple columns. Futher editing can be done by using <code>.reset_index()</code> which will make the index a column within the dataframe and replaces the index with the default numbered index.</p>
+<h5 id="3233-sorting">3.2.3.3. Sorting</h5>
+<p>To sort a dataframe use the <code>.sort_values('column_name')</code> to sort columns in ascending order (for decending order set the parameter <em>ascending</em> to False). To sort a dtaframe by the index use <code>.sort_index()</code>.</p>
+<h5 id="3234-fliping">3.2.3.4. Fliping</h5>
+<p>Sometimes it is useful to flip a table such that the rows become columns and the columns become rows. Pandas provides two methods for this. The first is <code>pandas.melt(data_frame)</code> which changes each columns to a row. The second is <code>data_frame.pivot(columns, values)</code>. The <em>columns</em> row values you would like to be columns. The <em>values</em> parameter is the is the values that would be placed into the new columns. Below is an example of how these functions work.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd;
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np;
+idex = pd.Index([<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>])
+s1 = pd.Series(np.arange(<span class="hljs-number">5</span>), idex)
+s2 = pd.Series([<span class="hljs-number">100</span>,<span class="hljs-number">200</span>,<span class="hljs-number">300</span>,<span class="hljs-number">400</span>,<span class="hljs-number">500</span>], idex)
+df = pd.DataFrame({<span class="hljs-string">&#x27;Ones&#x27;</span>:s1, <span class="hljs-string">&#x27;Hundreds&#x27;</span>:s2})
+print(df)
+print(pd.melt(df))
+print(df.pivot(columns=<span class="hljs-string">&#x27;Hundreds&#x27;</span>, values=<span class="hljs-string">&#x27;Ones&#x27;</span>))
+</div></code></pre>
+<hr>
+<pre><code>OUTPUT
+---------------
+  Ones  Hundreds
+a     0       100
+b     1       200
+c     2       300
+d     3       400
+e     4       500
+  variable  value
+0      Ones      0
+1      Ones      1
+2      Ones      2
+3      Ones      3
+4      Ones      4
+5  Hundreds    100
+6  Hundreds    200
+7  Hundreds    300
+8  Hundreds    400
+9  Hundreds    500
+Hundreds  100  200  300  400  500
+a         0.0  NaN  NaN  NaN  NaN
+b         NaN  1.0  NaN  NaN  NaN
+c         NaN  NaN  2.0  NaN  NaN
+d         NaN  NaN  NaN  3.0  NaN
+e         NaN  NaN  NaN  NaN  4.0
+</code></pre>
+<hr>
+<h5 id="3235-combining-tables">3.2.3.5. Combining Tables</h5>
+<p>You may find it neccesary at times to load multiple tables and attach them together. There is where the <code>pandas.concat()</code> function comes in handy. First you will input a list of Dataframes, this will by deafult append rows to the Datatables; but if you use the <em>axis</em> parameter you can either append rows (axis = 0) or append columns (axis= 1).</p>
+<p>In addition to appending you can also merge rows using the <code>pandas.merge()</code> function. This function takes two dataframes in. By defulat thsil will output the intersection of the tables, but if you set the <em>how</em> paramter to &quot;outer&quot; it will output the Union of the dataframes.</p>
+<h4 id="324-querying-and-evaluating-dataframes">3.2.4. Querying and Evaluating DataFrames</h4>
+<p>Those familiary with databases will love the pandas functions <code>.eval()</code> and <code>.query()</code> which allow you to search or run functions.</p>
+<p>The <code>.eval()</code> function will take in a string function that can inslude arithmatic, compaiison, and bitwise functions. These evaluation can also use paramters throug the method <code>df.column</code> and specific index values through <code>df[index]</code>. By comging index and column values you can access specific values via <code>df.column[index]</code>. In addtion to using internal values the <code>@</code> tag can be used at the begining of local variables to be used in a function. When used on a dataframe <code>.eval()</code> cna use the <em>inplace</em> parameter to add columns to its body when the funciton string assigns the value a column name.</p>
+<p>The <code>.query()</code> function allows you to query a dataframe similar to how one would query a database with SQL. The same paramters tools you can use iwth eval apply. If you run a query it will return any rows which will output the rows that meets the required values.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd;
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np;
+s1 = pd.Series([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>])
+s2 = pd.Series([<span class="hljs-number">3.14</span>,<span class="hljs-number">7.19</span>,<span class="hljs-number">6.4</span>])
+value = <span class="hljs-number">3</span>
+print(s1); print(s2);
+df = pd.DataFrame({<span class="hljs-string">&#x27;A&#x27;</span>:s1,<span class="hljs-string">&#x27;B&#x27;</span>:s2})
+print(df)
+print(<span class="hljs-string">&quot;Where is A Greater than &quot;</span>, value)
+print(df.eval(<span class="hljs-string">&#x27;(A &lt; @value)&#x27;</span>))
+print(<span class="hljs-string">&quot;What Data is in those locations&quot;</span>)
+print(df.query(<span class="hljs-string">&#x27;A &lt; @value&#x27;</span>))
+</div></code></pre>
+<pre><code>OUTPUT
+0    0
+1    1
+2    2
+3    3
+4    4
+5    5
+dtype: int64
+0    3.14
+1    7.19
+2    6.40
+dtype: float64
+  A     B
+0  0  3.14
+1  1  7.19
+2  2  6.40
+3  3   NaN
+4  4   NaN
+5  5   NaN
+Where is A Greater than  3
+0     True
+1     True
+2     True
+3    False
+4    False
+5    False
+dtype: bool
+What Data is in those locations
+  A     B
+0  0  3.14
+1  1  7.19
+2  2  6.40
+</code></pre>
+<h4 id="325-strings">3.2.5. Strings</h4>
+<p>Strings can be manipulated using <strong>Vertorized</strong> functions to use these simply add <code>.str.&lt;function&gt;</code> after you dataframe or series as seen below.</p>
+<pre><code class="language-python"><div><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+ds1 = pd.Series([<span class="hljs-string">&#x27;all&#x27;</span>, <span class="hljs-string">&#x27;these&#x27;</span>, <span class="hljs-string">&#x27;are&#x27;</span>, <span class="hljs-string">&#x27;lower&#x27;</span>, <span class="hljs-string">&#x27;case&#x27;</span>])
+print(ds1)
+print(ds1.str.capitalize())
+ds2 = pd.Series([<span class="hljs-string">&#x27;O|M|C&#x27;</span>,<span class="hljs-string">&#x27;M|D|G&#x27;</span>,<span class="hljs-string">&#x27;S|D|D&#x27;</span>])
+print(ds2)
+print(ds2.str.get_dummies())
+
+</div></code></pre>
+<p>OUTPUT</p>
+<pre><code>0      all
+1    these
+2      are
+3    lower
+4     case
+dtype: object
+0      All
+1    These
+2      Are
+3    Lower
+4     Case
+dtype: object
+0    O|M|C
+1    M|D|G
+2    S|D|D
+dtype: object
+  C  D  G  M  O  S
+0  1  0  0  1  1  0
+1  0  1  1  1  0  0
+2  0  1  0  0  0  1
+</code></pre>
+<h3 id="33-files">3.3. Files</h3>
+<p>Pandas also allows for input and output to common tabular data formats. To use these functions there are two types of functions to read and write. To read from a file you will use <code>pandas.read_&lt;file type&gt;</code> you can replace the file type with anything from html and csv, to excel and sql. To wrtie to tiles you must use <code>dataframe.to_&lt;file type&gt;</code> which will write to alsmost all the file types which pandas can read. If you are curous of which files you can use I suggest going to <a href="https://pandas.pydata.org/docs/user_guide/io.html">Pandas Documentation</a>.</p>
+<h2 id="4-code">4. Code</h2>
+<h3 id="41-output">4.1. Output</h3>
+<pre><code>Hello and Welcome to The Income Data Manager
+Checking for a database
+You do not have a database
+Do not worry we will get you started
+How Much are you payed/hr?10
+How many hours did you work?10
+How much did you take home?90
+                  Date Pay/Hr Hours   Net
+2021-06-12  2021-06-12   10.0  10.0  90.0
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+1
+How Much are you payed/hr?10
+How many hours did you work?20
+How much did you take home?185.33
+                  Date Pay/Hr Hours     Net
+2021-06-12  2021-06-12   10.0  20.0  185.33
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+2
+avg  Pay/Hr             10.00
+    Hours              15.00
+    Deduction%          0.09
+est  Annual Income    3561.97
+dtype: float64
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+3
+                  Date Pay/Hr Hours     Net  Gross Deduction Deduction%
+2021-06-12  2021-06-12   10.0  20.0  185.33  200.0     14.67    0.07335
+2021-06-12  2021-06-12   10.0  10.0    90.0  100.0      10.0        0.1
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+4
+--------------------------
+Hello and Welcome to The Income Data Manager
+Checking for a database
+Your database is located loading now
+Your Database has been loaded
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+3
+                Date  Pay/Hr  Hours     Net  Gross  Deduction  Deduction%
+2021-06-12 2021-06-12      10     20  185.33    200      14.67     0.07335
+2021-06-12 2021-06-12      10     10   90.00    100      10.00     0.10000
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+1
+How Much are you payed/hr?15
+How many hours did you work?10
+How much did you take home?120.15
+                  Date Pay/Hr Hours     Net
+2021-06-12  2021-06-12   15.0  10.0  120.15
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+2
+avg  Pay/Hr             11.67
+    Hours              13.33
+    Deduction%          0.12
+est  Annual Income    3542.46
+dtype: float64
+Please Select an option
+1. Make a new Entry
+2. View Statistics
+3. Print Data
+4. Exit
+</code></pre>
+<h3 id="42-code">4.2. Code</h3>
+<pre><code class="language-python"><div><span class="hljs-comment">#%%</span>
+<span class="hljs-comment"># This project will keep trake of your income</span>
+<span class="hljs-comment"># It will estmate the amount you are taxed and give you an estimated annual income</span>
+
+<span class="hljs-comment">#%%</span>
+<span class="hljs-comment"># Imports/Constants/Global Vars</span>
+<span class="hljs-keyword">from</span> os <span class="hljs-keyword">import</span> stat
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> datetime <span class="hljs-keyword">as</span> dt
+FILE_NAME= <span class="hljs-string">&quot;incomeSheet.xlsx&quot;</span>
+INCOME_SHEET = <span class="hljs-string">&#x27;INCOME&#x27;</span>
+STATS_SHEET= <span class="hljs-string">&#x27;STATISTICS&#x27;</span>
+stats = pd.Series([<span class="hljs-literal">None</span>])
+masterDB = pd.DataFrame(columns=[<span class="hljs-string">&#x27;Pay/Hr&#x27;</span>, <span class="hljs-string">&#x27;Hours&#x27;</span>, <span class="hljs-string">&#x27;Net&#x27;</span>])
+<span class="hljs-comment">#%%</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">check4Excel</span>():</span>
+     <span class="hljs-keyword">import</span> os
+     <span class="hljs-keyword">return</span> os.path.isfile(FILE_NAME)
+<span class="hljs-comment"># %% Read Excel</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readExcel</span>(<span class="hljs-params">filename, sheet</span>):</span>
+     xlFile = pd.ExcelFile(filename)
+     <span class="hljs-keyword">return</span> pd.read_excel(xlFile,sheet_name=sheet, index_col=<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># %% Make Data Entry</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">makeEntry</span>():</span>
+     <span class="hljs-keyword">global</span> masterDB
+     date = dt.date.today()
+     hrPay = float(input(<span class="hljs-string">&#x27;How Much are you payed/hr?&#x27;</span>))
+     hrs = float(input(<span class="hljs-string">&#x27;How many hours did you work?&#x27;</span>))
+     netPay = float(input(<span class="hljs-string">&#x27;How much did you take home?&#x27;</span>))
+     data = pd.Series([date,hrPay, hrs, netPay], name=str(date), index=[<span class="hljs-string">&#x27;Date&#x27;</span>,<span class="hljs-string">&#x27;Pay/Hr&#x27;</span>, <span class="hljs-string">&#x27;Hours&#x27;</span>, <span class="hljs-string">&#x27;Net&#x27;</span>])
+     print(data.to_frame().T)
+     <span class="hljs-keyword">if</span> masterDB.empty:
+          masterDB = data.to_frame().T.round(<span class="hljs-number">2</span>)
+     <span class="hljs-keyword">else</span>:
+          masterDB = pd.concat([data.to_frame().T, masterDB]).round(<span class="hljs-number">2</span>)
+
+
+<span class="hljs-comment"># %% Run Calcualtions</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">masterCalcs</span>():</span>
+     <span class="hljs-keyword">global</span> masterDB
+     masterDB[<span class="hljs-string">&#x27;Gross&#x27;</span>] = masterDB[<span class="hljs-string">&#x27;Pay/Hr&#x27;</span>] * masterDB[<span class="hljs-string">&#x27;Hours&#x27;</span>]
+     masterDB[<span class="hljs-string">&#x27;Deduction&#x27;</span>] = masterDB.Gross - masterDB.Net
+     masterDB[<span class="hljs-string">&#x27;Deduction%&#x27;</span>] = masterDB[<span class="hljs-string">&#x27;Deduction&#x27;</span>]/masterDB.Gross
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">statCalcs</span>():</span>
+     <span class="hljs-keyword">global</span> stats
+     Idex = pd.MultiIndex.from_tuples([(<span class="hljs-string">&#x27;avg&#x27;</span>, <span class="hljs-string">&#x27;Pay/Hr&#x27;</span>),(<span class="hljs-string">&#x27;avg&#x27;</span>, <span class="hljs-string">&#x27;Hours&#x27;</span>), (<span class="hljs-string">&#x27;avg&#x27;</span>,<span class="hljs-string">&#x27;Deduction%&#x27;</span>),(<span class="hljs-string">&#x27;est&#x27;</span>,<span class="hljs-string">&#x27;Annual Income&#x27;</span>)])
+     avgPayPerHr = masterDB[<span class="hljs-string">&#x27;Pay/Hr&#x27;</span>].mean()
+     avgHrs = masterDB.Hours.mean()
+     avgDed = masterDB[<span class="hljs-string">&#x27;Deduction%&#x27;</span>].mean()
+     estIncome = ((avgPayPerHr*avgHrs)*(<span class="hljs-number">1</span>-avgDed))*(<span class="hljs-number">52</span>/<span class="hljs-number">2</span>)
+     stats = pd.Series([avgPayPerHr, avgHrs, avgDed, estIncome], index=Idex).round(<span class="hljs-number">2</span>)
+<span class="hljs-comment"># %% Menu</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">menuLogic</span>(<span class="hljs-params">u_in</span>):</span>
+     <span class="hljs-keyword">global</span> masterDB
+     <span class="hljs-keyword">if</span> u_in == <span class="hljs-string">&#x27;1&#x27;</span>: <span class="hljs-comment"># Make New Data Entry</span>
+          makeEntry()
+     <span class="hljs-keyword">elif</span> u_in ==<span class="hljs-string">&#x27;2&#x27;</span>: <span class="hljs-comment"># Make</span>
+          print(stats)
+     <span class="hljs-keyword">elif</span> u_in == <span class="hljs-string">&#x27;3&#x27;</span>:
+          print(masterDB)
+     <span class="hljs-keyword">elif</span> u_in == <span class="hljs-string">&#x27;4&#x27;</span>:
+          print(<span class="hljs-string">&#x27;Goodbye&#x27;</span>)
+          <span class="hljs-keyword">return</span>
+     <span class="hljs-keyword">else</span>:
+          print(<span class="hljs-string">&#x27;Invalid Input&#x27;</span>)
+
+     masterCalcs()
+     statCalcs()
+     print_menu()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">print_menu</span>():</span>
+     <span class="hljs-keyword">global</span> masterDB
+     print(<span class="hljs-string">&#x27;Please Select an option&#x27;</span>)
+     print(<span class="hljs-string">&quot;1. Make a new Entry&quot;</span>)
+     print(<span class="hljs-string">&quot;2. View Statistics&quot;</span>)
+     print(<span class="hljs-string">&quot;3. Print Data&quot;</span>)
+     print(<span class="hljs-string">&quot;4. Exit&quot;</span>)
+     menuLogic(input())
+
+<span class="hljs-comment"># %% Welcome/Start</span>
+<span class="hljs-comment"># Welcome</span>
+print(<span class="hljs-string">&#x27;Hello and Welcome to The Income Data Manager&#x27;</span>)
+print(<span class="hljs-string">&#x27;Checking for a database&#x27;</span>)
+
+<span class="hljs-keyword">if</span> check4Excel():
+     print(<span class="hljs-string">&#x27;Your database is located loading now&#x27;</span>)
+     xl = pd.ExcelFile(FILE_NAME)
+     masterDB = readExcel(FILE_NAME, INCOME_SHEET)
+     print(<span class="hljs-string">&#x27;Your Database has been loaded&#x27;</span>)
+     print_menu()
+<span class="hljs-keyword">else</span>:
+     print(<span class="hljs-string">&#x27;You do not have a database&#x27;</span>)
+     print(<span class="hljs-string">&#x27;Do not worry we will get you started&#x27;</span>)
+
+     makeEntry()
+     masterCalcs()
+     statCalcs()
+     print_menu()
+
+<span class="hljs-keyword">with</span> pd.ExcelWriter(FILE_NAME) <span class="hljs-keyword">as</span> w:
+     masterDB.to_excel(w, sheet_name=INCOME_SHEET)
+     stats.to_excel(w, sheet_name=STATS_SHEET)
+     print(<span class="hljs-string">&quot;FILES SAVED&quot;</span>)
+<span class="hljs-comment"># %%</span>
+</div></code></pre>
+
+    </body>
+    </html>
