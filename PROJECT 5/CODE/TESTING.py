@@ -1,31 +1,29 @@
 # %%
+# ALL THE IMPORTS
+# IMPORTS
+import matplotlib.pyplot as plt  # PLOTING
+import numpy as np  # NUMPY
+import pandas as pd  # PANDAS
+from sklearn.datasets import load_iris  # Dataset
+# Models
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neighbors import RadiusNeighborsClassifier
 from sklearn.linear_model import LinearRegression
-import matplotlib.pyplot as plt
-import numpy as np
+# LOAD IRIS DATA
+iris = load_iris()
+X = iris.data
+y = iris.target
 
-rng = np.random.RandomState(42)
-x = 10 * rng.rand(50)
-y = 2 * x - 1 + rng.randn(50)
-plt.scatter(x, y)
+# SETUP Linear Regression model
+model_1 = LinearRegression(fit_intercept=True)
+x = X[:, np.newaxis]
+x.shape
 
-
-# %%
-model = LinearRegression(fit_intercept=True)
-model
-X = x[:, np.newaxis]
-X.shape
-
-model.fit(X, y)
-model.coef_
-model.intercept_
-
+model_1.fit(X, y)
 
 xfit = np.linspace(-1, 11)
 Xfit = xfit[:, np.newaxis]
-yfit = model.predict(Xfit)
+yfit = model_1.predict(Xfit)
+print(model_1)
 
-plt.clf()
-plt.scatter(x, y)
-plt.plot(xfit, yfit)
 # %%
-plt.show()
