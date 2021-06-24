@@ -36,10 +36,11 @@ y_fit_200 = model_200.predict(x[:, None])
 y_fit_500 = model_500.predict(x[:, None])
 # %% FILL OUT
 
-plt.plot(x, y_fit_200, '--', linewidth=2)
-plt.plot(x, y_fit_500, '-.', linewidth=2)
-plt.plot(x, signal(x, noise_mult=0), alpha=0.4, c='red')
-plt.errorbar(x, y, 0.5, fmt='o', alpha=0.1)
-plt.legend()
+
+plt.plot(x, y_fit_200, '--', linewidth=2, label='200_fit')
+plt.plot(x, y_fit_500, '-.', linewidth=2, label='500_fit')
+plt.plot(x, signal(x, noise_mult=0), alpha=0.4, c='red', label='True')
+plt.errorbar(x, y, 0.5, fmt='o', alpha=0.2, label='Noisy')
+plt.legend(loc='best')
 plt.savefig('..\images\RAND_FOREST-REG-ALL.png')
 # %%

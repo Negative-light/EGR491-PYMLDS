@@ -1,6 +1,8 @@
 # %%
 # ALL THE IMPORTS
 # IMPORTS
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.impute import SimpleImputer
 import matplotlib.pyplot as plt  # PLOTING
 import numpy as np  # NUMPY
 import pandas as pd  # PANDAS
@@ -25,5 +27,16 @@ xfit = np.linspace(-1, 11)
 Xfit = xfit[:, np.newaxis]
 yfit = model_1.predict(Xfit)
 print(model_1)
+
+# %%
+data = [{'power': 100, 'usage': 31, 'type': 'development'},
+        {'power': 5, 'usage': 23, 'type': 'development'},
+        {'power': 35, 'usegae': 37, 'type': 'gameing'}]
+
+v = DictVecorizer(spase=False)
+X = v.fit_transform(data)
+print(X)
+print(v.inverse_transform(X))
+print(v.transform({'power': 33, 'usage': 21, 'type': 'gameing'}))
 
 # %%
