@@ -10,15 +10,6 @@ sns.set()
 
 
 image = color.rgb2gray(data.brick())
-
+plt.axis('off')
 plt.imshow(image, cmap='gray')
 plt.title('YOU HAVE HIT A BRICK WALL')
-plt.axis('off')
-
-# %%
-
-os.chdir(__file__)
-plt.savefig('..\images\BRICK.png')
-
-
-# %%
