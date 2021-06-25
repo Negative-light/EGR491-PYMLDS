@@ -17,7 +17,7 @@ from sklearn.svm import LinearSVC
 # %% GET FALSE DATA
 imgs_to_use = ['camera', 'text', 'coins', 'moon',
                'page', 'clock', 'immunohistochemistry',
-               'chelsea', 'coffee', 'hubble_deep_field']
+               'chelsea', 'coffee', 'hubble_deep_field', 'logo', 'colorwheel', 'checkerboard']
 images = [color.rgb2gray(getattr(data, name)())
           for name in imgs_to_use]
 # %% GET TRUE
@@ -119,5 +119,7 @@ while(not exit):
 
         print('Goodbye')
         exit = True
+
+# %%
 
 # %%
